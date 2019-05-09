@@ -32,9 +32,23 @@ public class TextAdventure{
         Room medicalBay = new Room();
         Room bridge = new Room();
         Room escapePods= new Room();
+        hypersleepChamber.north=diningHall;
+        hypersleepChamber.south=null;
+        hypersleepChamber.east=medicalBay;
+        hypersleepChamber.west=null;
+        hypersleepChamber.description= "You are standing in the ship's hypersleep chamber, lined with pods in which organic lifeforms can enter suspended animation for an extended period of time. One such pod sits open, as though its activity has just ended.  To your north is the ship's dining hall.  To your east is the medical bay.";
+        hypersleepChamber.hidingPlace = new Hide();
+        hypersleepChamber.hidingPlace.name = "pod";
+        hypersleepChamber.hidingPlace.hideText = "You crawl back inside your hypersleep pod and close the lid, but it needs to be activated from outside.  You are safe from detection, but not the ravages of time.";
+        hypersleepChamber.hidingPlace.emergeText = "You press the emergency release button from inside the pod.  The door swings open, but not before a loud beep rings out.";
+        hypersleepChamber.hidingPlace.noisy = true;
+        hypersleepChamber.hidingPlace.hideDescription = "You are inside an inactive hypersleep pod.";
+
         Player player = new Player();
         Monster monster = new Monster();
-        
+        System.out.println("You awaken from hypersleep, well rested but worried.  You are not greeted with the standard welcoming party; in fact, the ship is eerily quiet.");
+        System.out.println("What will you do?");
+        parse(scanner.nextLine());
     }
     public static void timePass(){
 
@@ -243,6 +257,7 @@ public class TextAdventure{
                 for(int i=0; i<player.inventory.size(); i++){
                     if(useAttempt.contains(player.inventory.get(i).name.toLowerCase())){
                         System.out.println((player.inventory.get(i).useText));
+                       // player.inventory.get(i).use();
                         timePass();
                         break;
                     }
@@ -262,13 +277,23 @@ public class Room{
     public Hide hidingPlace;
     public List<Item> pickups;
     public List<Prop> inspectables;
+    public Room(Room north, Room south, Room east, Room west, Room vent, Hide hidingPlace, List<Item> pickups, List<Prop> inspectables){
+        this.north=north;
+        this.south=south;
+        this.east=east;
+        this.west=west;
+        this.vent=vent;
+        this.hidingPlace=hidingPlace;
+        this.pickups=pickups;
+        this.inspectables=inspectables;
+    }
 }
 public class Player{
-    public List<Item> inventory = ;
+    public List<Item> inventory = Arrays.asList(new stunGrenade());
     public Room location = hypersleepChamber;
     public bool bleeding = false;
-    public bool hiding;
-    public int health;
+    public bool hiding = false;
+    public int health = 10;
 }
 public class Monster{
     public int alert;
@@ -294,4 +319,13 @@ public class Prop{
     public string name;
     public string description;
     public string useText;
+}
+public class stunGrenade extends Item{{
+    this.name= "stun grenade";
+    this.useText= "You throw the stun grenade on the ground and duck around a corner just before a disorienting flash and deafening roar fill the room.";
+    this.pickUpText= "You take the stun grenade.";
+    this.description= "A standard-issue stun grenade, sure to ruin the day (but not the life) of anyone or anything caught in its blast radius.";
+    // public void use(){
+    //     return;
+    }
 }
