@@ -22,7 +22,27 @@ public class TextAdventure{
         };
 
         Scanner scanner = new Scanner(System.in);
-        Room hypersleepChamber = new Room();
+        Room hypersleepChamber = new Room(
+            "You are standing in the ship's hypersleep chamber, lined with pods in which organic lifeforms can enter suspended animation for an extended period of time. One such pod sits open, as though its activity has just ended.  To your north is the ship's dining hall.  To your east is the medical bay.",
+            diningHall,
+            null,
+            medicalBay,
+            null,
+            new Hide(
+                "pod",
+                "You crawl back inside your hypersleep pod and close the lid, but it needs to be activated from outside.  You are safe from detection, but not the ravages of time.",
+                "You press the emergency release button from inside the pod.  The door swings open, but not before a loud beep rings out.",
+                true,
+                "You are inside an inactive hypersleep pod."
+            ),
+            null,
+            Arrays.asList(
+                new Prop(
+                    ""
+                )
+            )
+
+        );
         Room cargoBay = new Room();
         Room diningHall = new Room();
         Room crewQuarters = new Room();
@@ -67,7 +87,7 @@ public class TextAdventure{
             case "north":
             case "n":
                 if(player.hiding == true){
-                    System.out.println("You cannot do that while hiding.  Type 'emerge' to leave your hiding spot");
+                    System.out.println("You cannot do that while hiding.  Type 'emerge' to leave your hiding spot.");
                     break;
                 }
                 if(player.location.north != null){
@@ -81,7 +101,7 @@ public class TextAdventure{
             case "south":
             case "s":
                 if(player.hiding == true){
-                    System.out.println("You cannot do that while hiding.  Type 'emerge' to leave your hiding spot");
+                    System.out.println("You cannot do that while hiding.  Type 'emerge' to leave your hiding spot.");
                     break;
                 }
                 if(player.location.south != null){
@@ -95,7 +115,7 @@ public class TextAdventure{
             case "east":
             case "e":
                 if(player.hiding == true){
-                    System.out.println("You cannot do that while hiding.  Type 'emerge' to leave your hiding spot");
+                    System.out.println("You cannot do that while hiding.  Type 'emerge' to leave your hiding spot.");
                     break;
                 }
                 if(player.location.east != null){
@@ -109,7 +129,7 @@ public class TextAdventure{
             case "west":
             case "w":
                 if(player.hiding == true){
-                    System.out.println("You cannot do that while hiding.  Type 'emerge' to leave your hiding spot");
+                    System.out.println("You cannot do that while hiding.  Type 'emerge' to leave your hiding spot.");
                     break;
                 }
                 if(player.location.west != null){
@@ -170,7 +190,7 @@ public class TextAdventure{
                     player.hiding = false;
                     System.out.println(player.location.hidingPlace.emergeText);
                     if(player.location.hidingPlace.noisy == true){
-                        monster.interested = player.location;
+                        monster.interested = player.location.name;
                     }
                     timePass();
                     break;
@@ -178,7 +198,7 @@ public class TextAdventure{
             case "look at":
             case "examine":
             case "inspect":
-                if(player.hiding = true){
+                if(player.hiding == true){
                     System.out.println("You are a little too cramped to do that.");
                     break;
                 }
@@ -268,16 +288,16 @@ public class TextAdventure{
     }
 }
 public class Room{
-    public string description;
-    public Room north;
-    public Room south;
-    public Room east;
-    public Room west;
-    public Room vent;
-    public Hide hidingPlace;
-    public List<Item> pickups;
-    public List<Prop> inspectables;
-    public Room(Room north, Room south, Room east, Room west, Room vent, Hide hidingPlace, List<Item> pickups, List<Prop> inspectables){
+    public String description = null;
+    public Room north = null ;
+    public Room south = null;
+    public Room east = null;
+    public Room west = null;
+    public Room vent = null;
+    public Hide hidingPlace = null;
+    public List<Item> pickups = {};
+    public List<Prop> inspectables = {};
+    public Room(String description, Room north, Room south, Room east, Room west, Room vent, Hide hidingPlace, List<Item> pickups, List<Prop> inspectables){
         this.north=north;
         this.south=south;
         this.east=east;
@@ -291,34 +311,34 @@ public class Room{
 public class Player{
     public List<Item> inventory = Arrays.asList(new stunGrenade());
     public Room location = hypersleepChamber;
-    public bool bleeding = false;
-    public bool hiding = false;
+    public Bool bleeding = false;
+    public Bool hiding = false;
     public int health = 10;
 }
 public class Monster{
-    public int alert;
-    public bool stunned;
-    public Room location;
-    public Room interested;
+    public int alert = 0;
+    public Bool stunned = false;
+    public Room location = escapePods;
+    public Room interested = null;
 }
 public class Item{
-    public string name;
-    public string description;
-    public string useText;
-    public string pickUpText;
+    public String name = null;
+    public String description = null;
+    public String useText = null;
+    public String pickUpText = null;
 }
 public class Hide{
-    public string name;
-    public string hideText;
-    public string emergeText;
-    public string description;
-    public string hideDescription;
-    public bool noisy;
+    public String name;
+    public String hideText;
+    public String emergeText;
+    public String description;
+    public String hideDescription;
+    public Bool noisy;
 }
 public class Prop{
-    public string name;
-    public string description;
-    public string useText;
+    public String name;
+    public String description;
+    public String useText;
 }
 public class stunGrenade extends Item{{
     this.name= "stun grenade";
