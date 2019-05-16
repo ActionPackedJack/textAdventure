@@ -14,7 +14,7 @@ public class TextAdventure{
             "STATUS: take stock of your personal well-being",
             "LOOK: examine your general surroundings",
             "LOOK AT: examine specific object (requires followup prompt)",
-            "TAKE: attempt to add an object to your inventory (requires followup prompt",
+            "TAKE: attempt to add an object to your inventory (requires followup prompt)",
             "USE: activate an inventory item or object in your environment (requires followup prompt)",
             "HIDE: conceal yourself if a suitable method exists in your current location (requires followup prompt)",
             "EMERGE: exit your hiding spot",
@@ -284,6 +284,8 @@ public class TextAdventure{
                 }
                 System.out.println("You don't see one of those here.");
                 break;
+            default:
+                System.out.println("Invalid command.  Type HELP for a list of options.");
         }
     }
 }
@@ -295,8 +297,8 @@ public class Room{
     public Room west = null;
     public Room vent = null;
     public Hide hidingPlace = null;
-    public List<Item> pickups = {};
-    public List<Prop> inspectables = {};
+    public List<Item> pickups;
+    public List<Prop> inspectables;
     public Room(String description, Room north, Room south, Room east, Room west, Room vent, Hide hidingPlace, List<Item> pickups, List<Prop> inspectables){
         this.north=north;
         this.south=south;
@@ -310,7 +312,7 @@ public class Room{
 }
 public class Player{
     public List<Item> inventory = Arrays.asList(new stunGrenade());
-    public Room location = hypersleepChamber;
+    public Room location;
     public Bool bleeding = false;
     public Bool hiding = false;
     public int health = 10;
@@ -318,7 +320,7 @@ public class Player{
 public class Monster{
     public int alert = 0;
     public Bool stunned = false;
-    public Room location = escapePods;
+    public Room location;
     public Room interested = null;
 }
 public class Item{
