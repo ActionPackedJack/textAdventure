@@ -289,58 +289,7 @@ public class TextAdventure{
         }
     }
 }
-public class Room{
-    public String description = null;
-    public Room north = null ;
-    public Room south = null;
-    public Room east = null;
-    public Room west = null;
-    public Room vent = null;
-    public Hide hidingPlace = null;
-    public List<Item> pickups;
-    public List<Prop> inspectables;
-    public Room(String description, Room north, Room south, Room east, Room west, Room vent, Hide hidingPlace, List<Item> pickups, List<Prop> inspectables){
-        this.north=north;
-        this.south=south;
-        this.east=east;
-        this.west=west;
-        this.vent=vent;
-        this.hidingPlace=hidingPlace;
-        this.pickups=pickups;
-        this.inspectables=inspectables;
-    }
-}
-public class Player{
-    public List<Item> inventory = Arrays.asList(new stunGrenade());
-    public Room location;
-    public Bool bleeding = false;
-    public Bool hiding = false;
-    public int health = 10;
-}
-public class Monster{
-    public int alert = 0;
-    public Bool stunned = false;
-    public Room location;
-    public Room interested = null;
-}
-public class Item{
-    public String name = null;
-    public String description = null;
-    public String useText = null;
-    public String pickUpText = null;
-}
-public class Hide{
-    public String name;
-    public String hideText;
-    public String emergeText;
-    public String description;
-    public String hideDescription;
-    public Bool noisy;
-}
-public class Prop{
-    public String name;
-    public String description;
-    public String useText;
+
 }
 public class stunGrenade extends Item{{
     this.name= "stun grenade";
