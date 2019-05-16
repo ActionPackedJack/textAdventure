@@ -4,5 +4,5 @@ public class Hide{
     public String emergeText;
     public String description;
     public String hideDescription;
-    public Bool noisy;
+    public boolean noisy;
 }

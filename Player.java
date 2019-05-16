@@ -2,7 +2,7 @@ import java.util.List;
 public class Player{
     public List<Item> inventory = Arrays.asList(new stunGrenade());
     public Room location;
-    public Bool bleeding = false;
-    public Bool hiding = false;
+    public boolean bleeding = false;
+    public boolean hiding = false;
     public int health = 10;
 }
