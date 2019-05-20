@@ -24,16 +24,13 @@ public class TextAdventure{
         Scanner scanner = new Scanner(System.in);
         Room hypersleepChamber = new Room(
             "You are standing in the ship's hypersleep chamber, lined with pods in which organic lifeforms can enter suspended animation for an extended period of time. One such pod sits open, as though its activity has just ended.  To your north is the ship's dining hall.  To your east is the medical bay.",
-            diningHall,
-            null,
-            medicalBay,
-            null,
             new Hide(
                 "pod",
-                "You crawl back inside your hypersleep pod and close the lid, but it needs to be activated from outside.  You are safe from detection, but not the ravages of time.",
+                "You crawl back inside your hypersleep pod and close the lid, but it can only be activated from outside.  You are safe from detection, but not the ravages of time.",
                 "You press the emergency release button from inside the pod.  The door swings open, but not before a loud beep rings out.",
-                true,
+                "This pod lays idle, its door open.  You could fit inside it if you so desired.",
                 "You are inside an inactive hypersleep pod."
+                true
             ),
             null,
             Arrays.asList(
@@ -53,9 +50,7 @@ public class TextAdventure{
         Room bridge = new Room();
         Room escapePods= new Room();
         hypersleepChamber.north=diningHall;
-        hypersleepChamber.south=null;
         hypersleepChamber.east=medicalBay;
-        hypersleepChamber.west=null;
         hypersleepChamber.description= "You are standing in the ship's hypersleep chamber, lined with pods in which organic lifeforms can enter suspended animation for an extended period of time. One such pod sits open, as though its activity has just ended.  To your north is the ship's dining hall.  To your east is the medical bay.";
         hypersleepChamber.hidingPlace = new Hide();
         hypersleepChamber.hidingPlace.name = "pod";
@@ -65,6 +60,8 @@ public class TextAdventure{
         hypersleepChamber.hidingPlace.hideDescription = "You are inside an inactive hypersleep pod.";
 
         Player player = new Player();
+        player.location = hypersleepChamber;
+        player.inventory.add(stunGrenade());
         Monster monster = new Monster();
         System.out.println("You awaken from hypersleep, well rested but worried.  You are not greeted with the standard welcoming party; in fact, the ship is eerily quiet.");
         System.out.println("What will you do?");
@@ -291,11 +288,12 @@ public class TextAdventure{
 }
 
 
-public class stunGrenade extends Item{{
-    this.name= "stun grenade";
-    this.useText= "You throw the stun grenade on the ground and duck around a corner just before a disorienting flash and deafening roar fill the room.";
-    this.pickUpText= "You take the stun grenade.";
-    this.description= "A standard-issue stun grenade, sure to ruin the day (but not the life) of anyone or anything caught in its blast radius.";
+public class stunGrenade extends Item{
+    public stunGrenade(){
+        this.name= "stun grenade";
+        this.useText= "You throw the stun grenade on the ground and duck around a corner just before a disorienting flash and deafening roar fill the room.";
+        this.pickUpText= "You take the stun grenade.";
+        this.description= "A standard-issue stun grenade, sure to ruin the day (but not the life) of anyone or   anything caught in its blast radius.";
     // public void use(){
     //     return;
     }

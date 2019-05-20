@@ -9,12 +9,12 @@ public class Room{
     public Hide hidingPlace = null;
     public List<Item> pickups;
     public List<Prop> inspectables;
-    public Room(String description, Room north, Room south, Room east, Room west, Room vent, Hide hidingPlace, List<Item> pickups, List<Prop> inspectables){
-        this.north=north;
-        this.south=south;
-        this.east=east;
-        this.west=west;
-        this.vent=vent;
+    public Room(String description, Hide hidingPlace, List<Item> pickups, List<Prop> inspectables){
+        this.north=null;
+        this.south=null;
+        this.east=null;
+        this.west=null;
+        this.vent=null;
         this.hidingPlace=hidingPlace;
         this.pickups=pickups;
         this.inspectables=inspectables;
