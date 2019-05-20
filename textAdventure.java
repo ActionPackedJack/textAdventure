@@ -290,7 +290,7 @@ public class TextAdventure{
     }
 }
 
-}
+
 public class stunGrenade extends Item{{
     this.name= "stun grenade";
     this.useText= "You throw the stun grenade on the ground and duck around a corner just before a disorienting flash and deafening roar fill the room.";
