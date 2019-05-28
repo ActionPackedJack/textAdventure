@@ -14,7 +14,7 @@ public class TextAdventure{
                 "You crawl back inside your hypersleep pod and close the lid, but it can only be activated from outside.  You are safe from detection, but not the ravages of time.",
                 "You press the emergency release button from inside the pod.  The door swings open, but not before a loud beep rings out.",
                 "This pod lays idle, its door open.  You could fit inside it if you so desired.",
-                "You are inside an inactive hypersleep pod."
+                "You are inside an inactive hypersleep pod.",
                 true
             ),
             null,
