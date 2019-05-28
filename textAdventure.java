@@ -4,22 +4,6 @@ import java.util.Arrays;
 
 public class TextAdventure{
     public static void main(){
-        String[] actions= {
-            "NORTH: move north",
-            "SOUTH: move south",
-            "EAST: move east",
-            "WEST: move west",
-            "WAIT: do nothing and let time pass",
-            "INVENTORY: view your current possessions",
-            "STATUS: take stock of your personal well-being",
-            "LOOK: examine your general surroundings",
-            "LOOK AT: examine specific object (requires followup prompt)",
-            "TAKE: attempt to add an object to your inventory (requires followup prompt)",
-            "USE: activate an inventory item or object in your environment (requires followup prompt)",
-            "HIDE: conceal yourself if a suitable method exists in your current location (requires followup prompt)",
-            "EMERGE: exit your hiding spot",
-            "HELP: you seem to understand this one already",
-        };
 
         Scanner scanner = new Scanner(System.in);
         Room hypersleepChamber = new Room(
@@ -84,14 +68,30 @@ public class TextAdventure{
     }
 
     public static void parse(String input){
+        String[] actions= {
+            "NORTH: move north",
+            "SOUTH: move south",
+            "EAST: move east",
+            "WEST: move west",
+            "WAIT: do nothing and let time pass",
+            "INVENTORY: view your current possessions",
+            "STATUS: take stock of your personal well-being",
+            "LOOK: examine your general surroundings",
+            "LOOK AT: examine specific object (requires followup prompt)",
+            "TAKE: attempt to add an object to your inventory (requires followup prompt)",
+            "USE: activate an inventory item or object in your environment (requires followup prompt)",
+            "HIDE: conceal yourself if a suitable method exists in your current location (requires followup prompt)",
+            "EMERGE: exit your hiding spot",
+            "HELP: you seem to understand this one already",
+        };
         input = input.toLowerCase();
         switch (input){
             case "help":
             case "instructions":
             case "how to play":
                 System.out.println("Here is a list of non-secret commands (some synonyms may be accepted):");
-                for(int i=0; i<actions.size(); i++){
-                    System.out.println(actions.get(i));
+                for(int i=0; i<actions.length; i++){
+                    System.out.println(actions[i]);
                 }
             case "north":
             case "n":
