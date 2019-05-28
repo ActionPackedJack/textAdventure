@@ -1,5 +1,6 @@
 import java.util.List;
 public class Room{
+    public String name = null;
     public String description = null;
     public Room north = null ;
     public Room south = null;
@@ -9,7 +10,8 @@ public class Room{
     public Hide hidingPlace = null;
     public List<Item> pickups;
     public List<Prop> inspectables;
-    public Room(String description, Hide hidingPlace, List<Item> pickups, List<Prop> inspectables){
+    public Room(String name, String description, Hide hidingPlace, List<Item> pickups, List<Prop> inspectables){
+        this.name=name;
         this.north=null;
         this.south=null;
         this.east=null;

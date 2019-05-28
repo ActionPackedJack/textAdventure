@@ -23,6 +23,7 @@ public class TextAdventure{
 
         Scanner scanner = new Scanner(System.in);
         Room hypersleepChamber = new Room(
+            "hypersleep chamber",
             "You are standing in the ship's hypersleep chamber, lined with pods in which organic lifeforms can enter suspended animation for an extended period of time. One such pod sits open, as though its activity has just ended.  To your north is the ship's dining hall.  To your east is the medical bay.",
             new Hide(
                 "pod",
@@ -45,13 +46,24 @@ public class TextAdventure{
         Room crewQuarters = new Room();
         Room captainsQuarters = new Room();
         Room weaponsStorage = new Room();
-        Room surveillance = new Room();
+        Room surveillance = new Room(
+            "surveillance room";
+            "You are in the surveillance room.  The walls are filled with closed-circuit television screens connected to the security cameras in each room.",
+            null,
+            null,
+            new Prop(
+                {"screen","monitor","console"},
+                "You observe the monitors.  The ship appears to be littered with corpses, but you see no signs of life.  That is, until you glance at the camera feed in the " + monster.location.name + " and see a lifeform unlike anything you've seen before. It stands about six feet tall, has no discernible body mass, "
+            )
+        );
         Room medicalBay = new Room();
         Room bridge = new Room();
         Room escapePods= new Room();
         hypersleepChamber.north=diningHall;
+        diningHall.south=hypersleepChamber;
         hypersleepChamber.east=medicalBay;
-        hypersleepChamber.description= "You are standing in the ship's hypersleep chamber, lined with pods in which organic lifeforms can enter suspended animation for an extended period of time. One such pod sits open, as though its activity has just ended.  To your north is the ship's dining hall.  To your east is the medical bay.";
+        medicalBay.west=hypersleepChamber;
+        hypersleepChamber.description= "You are in the hypersleep chamber, lined with pods in which organic lifeforms can enter suspended animation for an extended period of time. One such pod sits open, as though its activity has just ended.  To your north is the ship's dining hall.  To your east is the medical bay.";
         hypersleepChamber.hidingPlace = new Hide();
         hypersleepChamber.hidingPlace.name = "pod";
         hypersleepChamber.hidingPlace.hideText = "You crawl back inside your hypersleep pod and close the lid, but it needs to be activated from outside.  You are safe from detection, but not the ravages of time.";
@@ -68,7 +80,7 @@ public class TextAdventure{
         parse(scanner.nextLine());
     }
     public static void timePass(){
-
+        
     }
 
     public static void parse(String input){

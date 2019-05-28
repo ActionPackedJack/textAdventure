@@ -3,4 +3,5 @@ public class Monster{
     public boolean stunned = false;
     public Room location;
     public Room interested = null;
+    public boolean seen = false;
 }
