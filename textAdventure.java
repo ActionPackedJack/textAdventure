@@ -16,31 +16,36 @@ public class TextAdventure{
                 "This pod lays idle, its door open.  You could fit inside it if you so desired.",
                 "You are inside an inactive hypersleep pod.",
                 true
-            ),
-            null,
-            Arrays.asList(
-                new Prop(
-                    ""
-                )
             )
+            // Arrays.asList(
+            //     new Prop(
+            //         ""
+            //     )
+            //);
 
         );
         Room cargoBay = new Room();
         Room diningHall = new Room();
         Room crewQuarters = new Room();
-        Room captainsQuarters = new Room();
+        Room captainsQuarters = new Room(
+            "captain's quarters",
+            "You are in the captain's quarters.  There is a corpse slumped over a desk.",
+
+        );
+        Monster monster = new Monster();
+        monster.location = cargoBay;
         Room weaponsStorage = new Room();
+        Prop dashboard = new Prop(
+            {"screen","monitor","console", "dashboard"},
+            "You observe the monitors.  The ship appears to be littered with corpses, but you see no signs of life.  That is, until you glance at the camera feed in the " + monster.location.name + " and see a lifeform unlike anything you've seen before. It stands about six feet tall, has no discernible body fat, and has claws on every appendage.  Out from between its rows of pointy teeth, each longer than a human finger, drips a caustic green substance that appears to be partially melting whatever it lands on.",
+            "You observe the monitors.  The ship appears to be littered with corpses, but you see no signs of life.  That is, until you glance at the camera feed in the " + monster.location.name + " and see a lifeform unlike anything you've seen before. It stands about six feet tall, has no discernible body fat, and has claws on every appendage.  Out from between its rows of pointy teeth, each longer than a human finger, drips a caustic green substance that appears to be partially melting whatever it lands on."
+            
+        );
         Room surveillance = new Room(
-            "surveillance room";
+            "surveillance room",
             "You are in the surveillance room.  The walls are filled with closed-circuit television screens connected to the security cameras in each room.",
             null,
             null,
-            new Prop(
-                {"screen","monitor","console"},
-                "You observe the monitors.  The ship appears to be littered with corpses, but you see no signs of life.  That is, until you glance at the camera feed in the " + monster.location.name + " and see a lifeform unlike anything you've seen before. It stands about six feet tall, has no discernible body fat, and has claws on every appendage.  Out from between its rows of pointy teeth, each longer than a human finger, drips a caustic green substance that appears to be partially melting whatever it lands on.",
-                "You observe the monitors.  The ship appears to be littered with corpses, but you see no signs of life.  That is, until you glance at the camera feed in the " + monster.location.name + " and see a lifeform unlike anything you've seen before. It stands about six feet tall, has no discernible body fat, and has claws on every appendage.  Out from between its rows of pointy teeth, each longer than a human finger, drips a caustic green substance that appears to be partially melting whatever it lands on."
-                
-            )
         );
         Room medicalBay = new Room();
         Room bridge = new Room();
