@@ -24,19 +24,19 @@ public class TextAdventure{
             //);
 
         );
-        Room cargoBay = new Room();
-        Room diningHall = new Room();
-        Room crewQuarters = new Room();
+        Room cargoBay = new Room(null, null, null);
+        Room diningHall = new Room(null, null, null);
+        Room crewQuarters = new Room(null, null, null);
         Room captainsQuarters = new Room(
             "captain's quarters",
-            "You are in the captain's quarters.  There is a corpse slumped over a desk.",
+            "You are in the captain's quarters.  There is a corpse slumped over a desk.", null
 
         );
         Monster monster = new Monster();
         monster.location = cargoBay;
         Room weaponsStorage = new Room();
         Prop dashboard = new Prop(
-            {"screen","monitor","console", "dashboard"},
+            new String[]{"screen","monitor","console", "dashboard"},
             "You observe the monitors.  The ship appears to be littered with corpses, but you see no signs of life.  That is, until you glance at the camera feed in the " + monster.location.name + " and see a lifeform unlike anything you've seen before. It stands about six feet tall, has no discernible body fat, and has claws on every appendage.  Out from between its rows of pointy teeth, each longer than a human finger, drips a caustic green substance that appears to be partially melting whatever it lands on.",
             "You observe the monitors.  The ship appears to be littered with corpses, but you see no signs of life.  That is, until you glance at the camera feed in the " + monster.location.name + " and see a lifeform unlike anything you've seen before. It stands about six feet tall, has no discernible body fat, and has claws on every appendage.  Out from between its rows of pointy teeth, each longer than a human finger, drips a caustic green substance that appears to be partially melting whatever it lands on."
             
@@ -47,25 +47,29 @@ public class TextAdventure{
             null,
             null,
         );
-        Room medicalBay = new Room();
-        Room bridge = new Room();
-        Room escapePods= new Room();
+        Room medicalBay = new Room(null, null, null);
+        Room bridge = new Room(null, null, null);
+        Room escapePods= new Room(null, null, null);
         hypersleepChamber.north=diningHall;
         diningHall.south=hypersleepChamber;
         hypersleepChamber.east=medicalBay;
         medicalBay.west=hypersleepChamber;
         hypersleepChamber.description= "You are in the hypersleep chamber, lined with pods in which organic lifeforms can enter suspended animation for an extended period of time. One such pod sits open, as though its activity has just ended.  To your north is the ship's dining hall.  To your east is the medical bay.";
-        hypersleepChamber.hidingPlace = new Hide();
-        hypersleepChamber.hidingPlace.name = "pod";
-        hypersleepChamber.hidingPlace.hideText = "You crawl back inside your hypersleep pod and close the lid, but it needs to be activated from outside.  You are safe from detection, but not the ravages of time.";
-        hypersleepChamber.hidingPlace.emergeText = "You press the emergency release button from inside the pod.  The door swings open, but not before a loud beep rings out.";
-        hypersleepChamber.hidingPlace.noisy = true;
-        hypersleepChamber.hidingPlace.hideDescription = "You are inside an inactive hypersleep pod.";
+        hypersleepChamber.hidingPlace = new Hide(
+                "pod",
+                "You crawl back inside your hypersleep pod and close the lid, but it needs to be activated from outside.  You are safe from detection, but not the ravages of time.",
+                "You press the emergency release button from inside the pod.  The door swings open, but not before a loud beep rings out.", null,
+                "You are inside an inactive hypersleep pod.",
+                true);
+//        hypersleepChamber.hidingPlace.name = "pod";
+//        hypersleepChamber.hidingPlace.hideText = "You crawl back inside your hypersleep pod and close the lid, but it needs to be activated from outside.  You are safe from detection, but not the ravages of time.";
+//        hypersleepChamber.hidingPlace.emergeText = "You press the emergency release button from inside the pod.  The door swings open, but not before a loud beep rings out.";
+//        hypersleepChamber.hidingPlace.noisy = true;
+//        hypersleepChamber.hidingPlace.hideDescription = "You are inside an inactive hypersleep pod.";
 
         Player player = new Player();
         player.location = hypersleepChamber;
         player.inventory.add(stunGrenade());
-        Monster monster = new Monster();
         System.out.println("You awaken from hypersleep, well rested but worried.  You are not greeted with the standard welcoming party; in fact, the ship is eerily quiet.");
         System.out.println("What will you do?");
         parse(scanner.nextLine());
@@ -307,13 +311,13 @@ public class TextAdventure{
 }
 
 
-public class stunGrenade extends Item{
-    public stunGrenade(){
-        this.name= "stun grenade";
-        this.useText= "You throw the stun grenade on the ground and duck around a corner just before a disorienting flash and deafening roar fill the room.";
-        this.pickUpText= "You take the stun grenade.";
-        this.description= "A standard-issue stun grenade, sure to ruin the day (but not the life) of anyone or   anything caught in its blast radius.";
-    // public void use(){
-    //     return;
-    }
-}
+// public class stunGrenade extends Item{
+//     public stunGrenade(){
+//         this.name= "stun grenade";
+//         this.useText= "You throw the stun grenade on the ground and duck around a corner just before a disorienting flash and deafening roar fill the room.";
+//         this.pickUpText= "You take the stun grenade.";
+//         this.description= "A standard-issue stun grenade, sure to ruin the day (but not the life) of anyone or   anything caught in its blast radius.";
+//     // public void use(){
+//     //     return;
+//     }
+// }
