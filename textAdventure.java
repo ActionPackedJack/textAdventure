@@ -44,8 +44,7 @@ public class TextAdventure{
         Room surveillance = new Room(
             "surveillance room",
             "You are in the surveillance room.  The walls are filled with closed-circuit television screens connected to the security cameras in each room.",
-            null,
-            null,
+            null
         );
         Room medicalBay = new Room(null, null, null);
         Room bridge = new Room(null, null, null);
