@@ -3,9 +3,11 @@ import java.util.List;
 import java.util.Arrays;
 
 public class TextAdventure{
-    public static void main(){
-
-        Scanner scanner = new Scanner(System.in);
+    Player player;
+    Monster monster;
+    Scanner scanner;
+    public void main(){
+        scanner = new Scanner(System.in);
         Room hypersleepChamber = new Room(
             "hypersleep chamber",
             "You are standing in the ship's hypersleep chamber, lined with pods in which organic lifeforms can enter suspended animation for an extended period of time. One such pod sits open, as though its activity has just ended.  To your north is the ship's dining hall.  To your east is the medical bay.",
@@ -32,9 +34,9 @@ public class TextAdventure{
             "You are in the captain's quarters.  There is a corpse slumped over a desk.", null
 
         );
-        Monster monster = new Monster();
+        monster = new Monster();
         monster.location = cargoBay;
-        Room weaponsStorage = new Room();
+        Room weaponsStorage = new Room(null, null, null);
         Prop dashboard = new Prop(
             new String[]{"screen","monitor","console", "dashboard"},
             "You observe the monitors.  The ship appears to be littered with corpses, but you see no signs of life.  That is, until you glance at the camera feed in the " + monster.location.name + " and see a lifeform unlike anything you've seen before. It stands about six feet tall, has no discernible body fat, and has claws on every appendage.  Out from between its rows of pointy teeth, each longer than a human finger, drips a caustic green substance that appears to be partially melting whatever it lands on.",
@@ -66,18 +68,18 @@ public class TextAdventure{
 //        hypersleepChamber.hidingPlace.noisy = true;
 //        hypersleepChamber.hidingPlace.hideDescription = "You are inside an inactive hypersleep pod.";
 
-        Player player = new Player();
+        player = new Player();
         player.location = hypersleepChamber;
-        player.inventory.add(stunGrenade());
+        //player.inventory.add(stunGrenade());
         System.out.println("You awaken from hypersleep, well rested but worried.  You are not greeted with the standard welcoming party; in fact, the ship is eerily quiet.");
         System.out.println("What will you do?");
         parse(scanner.nextLine());
     }
-    public static void timePass(){
+    public void timePass(){
         
     }
 
-    public static void parse(String input){
+    public void parse(String input){
         String[] actions= {
             "NORTH: move north",
             "SOUTH: move south",
@@ -188,7 +190,7 @@ public class TextAdventure{
                 }
                 System.out.println("Where will you hide?");
                 String hideAttempt = scanner.nextLine();
-                if(hideAttempt.toLowerCase().contains(player.location.hidingPlace.name.toLowerCaser())){
+                if(hideAttempt.toLowerCase().contains(player.location.hidingPlace.name.toLowerCase())){
                     System.out.println(player.location.hidingPlace.hideText);
                     player.hiding=true;
                     System.out.println("Type 'emerge' to leave your hiding spot.");
@@ -209,7 +211,7 @@ public class TextAdventure{
                     player.hiding = false;
                     System.out.println(player.location.hidingPlace.emergeText);
                     if(player.location.hidingPlace.noisy == true){
-                        monster.interested = player.location.name;
+                        monster.interested = player.location;
                     }
                     timePass();
                     break;
