@@ -235,10 +235,11 @@ public class TextAdventure{
                         break;
                     }
                 }
-                for (int i=0; i<player.location.inspectables.size(); i++){
-                    if(lookAttempt.contains(player.location.inspectables.get(i).name.toLowerCase())){
-                        System.out.println(player.location.inspectables.get(i).description);
-                        break;
+                for(int i=0; i<player.location.inspectables.size(); i++) {
+                    for (int j = 0; j < player.location.inspectables.get(i).name.length; j++) {
+                        if(player.location.inspectables.get(i).name[j].contains(lookAttempt)) {
+                            System.out.println(player.location.inspectables.get(i).description);
+                        }
                     }
                 }
                 for (int i=0; i<player.inventory.size(); i++){
@@ -264,10 +265,11 @@ public class TextAdventure{
                         break;
                     }
                 }
-                for(int i=0; i<player.location.inspectables.size(); i++){
-                    if(pickUpAttempt.contains(player.location.inspectables.get(i).name.toLowerCase())){
-                        System.out.println("You cannot pick that up.");
-                        break;
+                for(int i=0; i<player.location.inspectables.size(); i++) {
+                    for (int j = 0; j < player.location.inspectables.get(i).name.length; j++) {
+                        if(player.location.inspectables.get(i).name[j].contains(pickUpAttempt)) {
+                            System.out.println("You briefly consider bringing the " + player.location.inspectables.get(i).name[j] + " with you, but ultimately decide against it.");
+                        }
                     }
                 }
                 if(pickUpAttempt.contains(player.location.hidingPlace.name)){
@@ -282,16 +284,17 @@ public class TextAdventure{
                 System.out.println("What will you use?");
                 String useAttempt = scanner.nextLine().toLowerCase();
                 for(int i=0; i<player.location.inspectables.size(); i++){
-                    if(useAttempt.contains(player.location.inspectables.get(i).name.toLowerCase())){
-                        if(player.location.inspectables.get(i).useText == null){
-                            System.out.println("You cannot discern a productive way to use that.");
-                            timePass();
-                            break;
-                        }
-                        else{
-                            System.out.println(player.location.inspectables.get(i).useText);
-                            timePass();
-                            break;
+                    for(int j=0; j<player.location.inspectables.get(i).name.length; j++){
+                        if(player.location.inspectables.get(i).name[j].contains(useAttempt)) {
+                            if (player.location.inspectables.get(i).useText == null) {
+                                System.out.println("You cannot discern a productive way to use that.");
+                                timePass();
+                                break;
+                            } else {
+                                System.out.println(player.location.inspectables.get(i).useText);
+                                timePass();
+                                break;
+                            }
                         }
                     }
                 }
