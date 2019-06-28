@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="360120eb-41b0-42d5-b93e-3595c4643fa1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/TextAdventure.java" beforeDir="false" afterPath="$PROJECT_DIR$/TextAdventure.java" afterDir="false" />
-    </list>
+    <list default="true" id="360120eb-41b0-42d5-b93e-3595c4643fa1" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,8 +18,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/TextAdventure.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3513">
-              <caret line="240" column="94" selection-start-line="240" selection-start-column="94" selection-end-line="240" selection-end-column="94" />
+            <state relative-caret-position="527">
+              <caret line="310" column="21" lean-forward="true" selection-start-line="310" selection-start-column="21" selection-end-line="310" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -216,8 +214,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TextAdventure.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3513">
-          <caret line="240" column="94" selection-start-line="240" selection-start-column="94" selection-end-line="240" selection-end-column="94" />
+        <state relative-caret-position="527">
+          <caret line="310" column="21" lean-forward="true" selection-start-line="310" selection-start-column="21" selection-end-line="310" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

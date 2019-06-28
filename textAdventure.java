@@ -26,12 +26,16 @@ public class TextAdventure{
             //);
 
         );
-        Room cargoBay = new Room(null, null, null);
+        Room cargoBay = new Room(
+                "cargo bay",
+                null,
+                null);
         Room diningHall = new Room(null, null, null);
         Room crewQuarters = new Room(null, null, null);
         Room captainsQuarters = new Room(
             "captain's quarters",
-            "You are in the captain's quarters.  There is a corpse slumped over a desk.", null
+            "You are in the captain's quarters.  There is a corpse slumped over a desk.",
+                null
 
         );
         monster = new Monster();
@@ -300,7 +304,7 @@ public class TextAdventure{
                 }
                 for(int i=0; i<player.inventory.size(); i++){
                     if(useAttempt.contains(player.inventory.get(i).name.toLowerCase())){
-                        System.out.println((player.inventory.get(i).useText));
+                        System.out.println(player.inventory.get(i).useText);
                        // player.inventory.get(i).use();
                         timePass();
                         break;
