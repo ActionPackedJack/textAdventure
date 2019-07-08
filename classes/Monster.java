@@ -1,3 +1,5 @@
+package classes;
+
 import java.util.*;
 public class Monster{
     public int alert = 0;

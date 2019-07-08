@@ -1,12 +1,16 @@
+package classes;
+
 import java.util.Scanner;
 import java.util.List;
 import java.util.Arrays;
+import classes.*;
 
 public class TextAdventure{
     Player player;
     Monster monster;
     Scanner scanner;
     public void main(){
+        System.out.println("MAIN METHOD");
         scanner = new Scanner(System.in);
         Room hypersleepChamber = new Room(
             "hypersleep chamber",
@@ -20,7 +24,7 @@ public class TextAdventure{
                 true
             )
             // Arrays.asList(
-            //     new Prop(
+            //     new classes.Prop(
             //         ""
             //     )
             //);
@@ -319,7 +323,7 @@ public class TextAdventure{
 }
 
 
-// public class stunGrenade extends Item{
+// public class stunGrenade extends classes.Item{
 //     public stunGrenade(){
 //         this.name= "stun grenade";
 //         this.useText= "You throw the stun grenade on the ground and duck around a corner just before a disorienting flash and deafening roar fill the room.";

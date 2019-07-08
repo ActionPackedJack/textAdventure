@@ -1,3 +1,5 @@
+package classes;
+
 public class Hide{
     public String name;
     public String hideText;

@@ -1,3 +1,5 @@
+package classes;
+
 import java.util.Arrays;
 public class Prop{
     public String[] name;
