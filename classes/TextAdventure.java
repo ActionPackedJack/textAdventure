@@ -6,10 +6,10 @@ import java.util.Arrays;
 import classes.*;
 
 public class TextAdventure{
-    Player player;
-    Monster monster;
-    Scanner scanner;
-    public void main(){
+    static Player player;
+    static Monster monster;
+    static Scanner scanner;
+    public static void main(String[] args) {
         System.out.println("MAIN METHOD");
         scanner = new Scanner(System.in);
         Room hypersleepChamber = new Room(
@@ -83,11 +83,11 @@ public class TextAdventure{
         System.out.println("What will you do?");
         parse(scanner.nextLine());
     }
-    public void timePass(){
+    public static void timePass(){
         
     }
 
-    public void parse(String input){
+    public static void parse(String input){
         String[] actions= {
             "NORTH: move north",
             "SOUTH: move south",
