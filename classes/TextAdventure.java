@@ -130,6 +130,7 @@ public class TextAdventure{
                 if(player.location.north != null){
                     player.location = player.location.north;
                     timePass();
+                    System.out.println(player.location.description);
                 }
                 else{
                     System.out.println("You cannot go north from here.");
@@ -144,6 +145,7 @@ public class TextAdventure{
                 if(player.location.south != null){
                     player.location = player.location.south;
                     timePass();
+                    System.out.println(player.location.description);
                 }
                 else{
                     System.out.println("You cannot go south from here.");
@@ -158,6 +160,7 @@ public class TextAdventure{
                 if(player.location.east != null){
                     player.location = player.location.east;
                     timePass();
+                    System.out.println(player.location.description);
                 }
                 else{
                     System.out.println("You cannot go east from here.");
@@ -172,6 +175,7 @@ public class TextAdventure{
                 if(player.location.west != null){
                     player.location = player.location.west;
                     timePass();
+                    System.out.println(player.location.description);
                 }
                 else{
                     System.out.println("You cannot go west from here.");
