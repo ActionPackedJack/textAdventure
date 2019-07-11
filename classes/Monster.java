@@ -10,6 +10,7 @@ public class Monster{
     public Room lastTraveled = null;
     public Boolean moved = false;
     public List<Room> moveOptions;
+    public Boolean alive = true;
     public void move(){
         this.moved = false;
         this.moveOptions.clear();

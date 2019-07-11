@@ -42,6 +42,11 @@ public class TextAdventure{
                 null
 
         );
+        Room researchLab = new Room(
+                "research lab",
+                "You are in the research lab.  There are tables lined with samples of various liquids and minerals from all across the galaxy, though many of them have made their way to the floor.",
+                null
+        );
         monster = new Monster();
         monster.location = cargoBay;
         Room weaponsStorage = new Room(null, null, null);
@@ -80,8 +85,11 @@ public class TextAdventure{
         player.location = hypersleepChamber;
         //player.inventory.add(stunGrenade());
         System.out.println("You awaken from hypersleep, well rested but worried.  You are not greeted with the standard welcoming party; in fact, the ship is eerily quiet.");
-        System.out.println("What will you do?");
-        parse(scanner.nextLine());
+        while(player.alive==true && monster.alive==true) {
+            System.out.println("WHILE LOOP");
+            System.out.println("What will you doooo?");
+            parse(scanner.nextLine());
+        }
     }
     public static void timePass(){
         
@@ -182,9 +190,11 @@ public class TextAdventure{
                 if(player.inventory.size()==0){
                     System.out.println("You are not carrying anything noteworthy.");
                 }
-                System.out.println("You are carrying: ");
-                for (int i=0; i<player.inventory.size(); i++){
-                    System.out.println(player.inventory.get(i).name);
+                else {
+                    System.out.println("You are carrying: ");
+                    for (int i = 0; i < player.inventory.size(); i++) {
+                        System.out.println(player.inventory.get(i).name);
+                    }
                 }
                 break;
             case "hide":
@@ -234,6 +244,7 @@ public class TextAdventure{
                 System.out.println("What will you examine?");
                 String lookAttempt = scanner.nextLine().toLowerCase();
                 if(lookAttempt.contains(player.location.hidingPlace.name.toLowerCase())){
+                    System.out.println("EXAMINING HIDING PLACE");
                     System.out.println(player.location.hidingPlace.description);
                     break;
                 }
@@ -318,6 +329,7 @@ public class TextAdventure{
                 break;
             default:
                 System.out.println("Invalid command.  Type HELP for a list of options.");
+
         }
     }
 }
