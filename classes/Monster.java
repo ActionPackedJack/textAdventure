@@ -11,6 +11,7 @@ public class Monster{
     public Boolean moved = false;
     public List<Room> moveOptions;
     public Boolean alive = true;
+    public Boolean posturing = false;
     public void move(){
         this.moved = false;
         this.moveOptions.clear();

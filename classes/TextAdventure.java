@@ -331,6 +331,29 @@ public class TextAdventure{
                 }
                 System.out.println("You don't see one of those here.");
                 break;
+            case "shout":
+            case "yell":
+            case "scream":
+            case "bellow":
+            case "roar":
+                if(monster.location == player.location && player.hiding == true){
+                    System.out.println("You enthusiastically greet the creature which was prowling past you paying you no mind.  You begin to regret your decision as it quickly discerns your location and tears you to pieces.");
+                    player.alive = false;
+                }
+                if(monster.location==player.location && monster.posturing == false){
+                    System.out.println("Remembering what you read about wilderness survival in vintage magazines, you stand your ground and shout as a show of force.  Unfortunately, you suspect that the creature is not intimidated when it squats in front of you and stares directly into your eyes.  As you feel the musty warm emanating from its mouth, you suspect you may need to try something more substantial.");
+                    monster.posturing = true;
+                    break;
+                }
+                else if(monster.location==player.location && monster.posturing == true){
+                    System.out.println("The creature is done toying with you.  You see a claw shoot toward your face, and then you see nothing.");
+                    player.alive = false;
+                    break;
+                }
+                System.out.println("You let out a hearty bellow at the top of your lungs.  There don't seem to be a lot of lifeforms hanging around, but you're sure that whatever IS still alive heard that.");
+                monster.interested=player.location;
+                timePass();
+                break;
             default:
                 System.out.println("Invalid command.  Type HELP for a list of options.");
 
