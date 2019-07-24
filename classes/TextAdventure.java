@@ -183,7 +183,7 @@ public class TextAdventure{
                 break;
             case "look":
                 if(player.hiding == true){
-                    System.out.println(player.location.hidingPlace.description);
+                    System.out.println(player.location.hidingPlace.hideDescription);
                     break;
                 }
                 System.out.println(player.location.description);
@@ -360,6 +360,8 @@ public class TextAdventure{
         }
     }
 }
+
+
 
 
 // public class stunGrenade extends classes.Item{
