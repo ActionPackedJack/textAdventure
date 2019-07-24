@@ -51,8 +51,8 @@ public class TextAdventure{
         monster.location = cargoBay;
         Room weaponsStorage = new Room("weapons storage", "You are in the weapons storage.", null);
         Prop dashboard = new Prop(
-            new String[]{"screen","monitor","console", "dashboard"},
-            "You observe the monitors.  The ship appears to be littered with corpses, but you see no signs of life.  That is, until you glance at the camera feed in the " + monster.location.name + " and see a lifeform unlike anything you've seen before. It stands about six feet tall, has no discernible body fat, and has claws on every appendage.  Out from between its rows of pointy teeth, each longer than a human finger, drips a caustic green substance that appears to be partially melting whatever it lands on.",
+            new String[]{"screen","monitor","console", "dashboard", "television"},
+            "These monitors are displaying video feed from cameras placed in every room of the ship.  You could use them to keep abreast of any unusual activities on the ship.",
             "You observe the monitors.  The ship appears to be littered with corpses, but you see no signs of life.  That is, until you glance at the camera feed in the " + monster.location.name + " and see a lifeform unlike anything you've seen before. It stands about six feet tall, has no discernible body fat, and has claws on every appendage.  Out from between its rows of pointy teeth, each longer than a human finger, drips a caustic green substance that appears to be partially melting whatever it lands on."
             
         );
