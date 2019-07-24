@@ -10,7 +10,6 @@ public class TextAdventure{
     static Monster monster;
     static Scanner scanner;
     public static void main(String[] args) {
-        System.out.println("MAIN METHOD");
         scanner = new Scanner(System.in);
         Room hypersleepChamber = new Room(
             "hypersleep chamber",
@@ -23,12 +22,6 @@ public class TextAdventure{
                 "You are inside an inactive hypersleep pod.",
                 true
             )
-            // Arrays.asList(
-            //     new classes.Prop(
-            //         ""
-            //     )
-            //);
-
         );
         Room cargoBay = new Room(
                 "cargo bay",
@@ -40,7 +33,6 @@ public class TextAdventure{
             "captain's quarters",
             "You are in the captain's quarters.  There is a corpse slumped over a desk.",
                 null
-
         );
         Room researchLab = new Room(
                 "research lab",
@@ -75,19 +67,13 @@ public class TextAdventure{
                 "You press the emergency release button from inside the pod.  The door swings open, but not before a loud beep rings out.", null,
                 "You are inside an inactive hypersleep pod.",
                 true);
-//        hypersleepChamber.hidingPlace.name = "pod";
-//        hypersleepChamber.hidingPlace.hideText = "You crawl back inside your hypersleep pod and close the lid, but it needs to be activated from outside.  You are safe from detection, but not the ravages of time.";
-//        hypersleepChamber.hidingPlace.emergeText = "You press the emergency release button from inside the pod.  The door swings open, but not before a loud beep rings out.";
-//        hypersleepChamber.hidingPlace.noisy = true;
-//        hypersleepChamber.hidingPlace.hideDescription = "You are inside an inactive hypersleep pod.";
 
         player = new Player();
         player.location = hypersleepChamber;
         //player.inventory.add(stunGrenade());
         System.out.println("You awaken from hypersleep, well rested but worried.  You are not greeted with the standard welcoming party; in fact, the ship is eerily quiet.");
         while(player.alive==true && monster.alive==true) {
-            System.out.println("WHILE LOOP");
-            System.out.println("What will you doooo?");
+            System.out.println("What will you do?");
             parse(scanner.nextLine());
         }
     }
