@@ -32,10 +32,10 @@ public class TextAdventure{
         );
         Room cargoBay = new Room(
                 "cargo bay",
-                null,
+                "You are standing in the ship's cargo bay",
                 null);
-        Room diningHall = new Room(null, null, null);
-        Room crewQuarters = new Room(null, null, null);
+        Room diningHall = new Room("dining hall", "You are standing in the ship's dining hall", null);
+        Room crewQuarters = new Room("crew quarters", "You are standing in the crew quarters", null);
         Room captainsQuarters = new Room(
             "captain's quarters",
             "You are in the captain's quarters.  There is a corpse slumped over a desk.",
@@ -49,7 +49,7 @@ public class TextAdventure{
         );
         monster = new Monster();
         monster.location = cargoBay;
-        Room weaponsStorage = new Room(null, null, null);
+        Room weaponsStorage = new Room("weapons storage", "You are in the weapons storage.", null);
         Prop dashboard = new Prop(
             new String[]{"screen","monitor","console", "dashboard"},
             "You observe the monitors.  The ship appears to be littered with corpses, but you see no signs of life.  That is, until you glance at the camera feed in the " + monster.location.name + " and see a lifeform unlike anything you've seen before. It stands about six feet tall, has no discernible body fat, and has claws on every appendage.  Out from between its rows of pointy teeth, each longer than a human finger, drips a caustic green substance that appears to be partially melting whatever it lands on.",
@@ -61,9 +61,9 @@ public class TextAdventure{
             "You are in the surveillance room.  The walls are filled with closed-circuit television screens connected to the security cameras in each room.",
             null
         );
-        Room medicalBay = new Room(null, null, null);
-        Room bridge = new Room(null, null, null);
-        Room escapePods= new Room(null, null, null);
+        Room medicalBay = new Room("medical bay", "You are in the medical bay.", null);
+        Room bridge = new Room("bridge", "You are at the bridge of the ship.", null);
+        Room escapePods= new Room("escape pods", "You are next to the ship's escape pods.", null);
         hypersleepChamber.north=diningHall;
         diningHall.south=hypersleepChamber;
         hypersleepChamber.east=medicalBay;

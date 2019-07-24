@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="360120eb-41b0-42d5-b93e-3595c4643fa1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/TextAdventure.java" beforeDir="false" afterPath="$PROJECT_DIR$/classes/TextAdventure.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TextAdventure/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TextAdventure/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TextAdventure/classes/Monster.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TextAdventure/classes/Monster.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TextAdventure/classes/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TextAdventure/classes/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TextAdventure/classes/TextAdventure.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TextAdventure/classes/TextAdventure.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,8 +19,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/classes/TextAdventure.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="185" column="82" selection-start-line="185" selection-start-column="82" selection-end-line="185" selection-end-column="82" />
+            <state relative-caret-position="108">
+              <caret line="65" column="89" selection-start-line="65" selection-start-column="89" selection-end-line="65" selection-end-column="89" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -124,6 +119,7 @@
       <find>examine</find>
       <find>time</find>
       <find>static</find>
+      <find>hidedes</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -220,6 +216,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16117217" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -321,8 +318,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/classes/TextAdventure.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="185" column="82" selection-start-line="185" selection-start-column="82" selection-end-line="185" selection-end-column="82" />
+        <state relative-caret-position="108">
+          <caret line="65" column="89" selection-start-line="65" selection-start-column="89" selection-end-line="65" selection-end-column="89" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
