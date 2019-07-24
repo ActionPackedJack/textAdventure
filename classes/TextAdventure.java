@@ -80,6 +80,21 @@ public class TextAdventure{
     public static void timePass(){
         
     }
+    public static void (){
+        if(player.location.north!=null) {
+            System.out.println("To the north is the " + player.location.north.name + ".");
+        }
+        if(player.location.south!=null) {
+            System.out.println("To the south is the " + player.location.south.name + ".");
+        }
+        if(player.location.east!=null) {
+            System.out.println("To the east is the " + player.location.east.name + ".");
+        }
+        if(player.location.west!=null) {
+            System.out.println("To the south is the " + player.location.west.name + ".");
+        }
+        return;
+    }
 
     public static void parse(String input){
         String[] actions= {
@@ -173,6 +188,7 @@ public class TextAdventure{
                     break;
                 }
                 System.out.println(player.location.description);
+                listAdjacentRooms();
                 break;
             case "inventory":
             case "items":
