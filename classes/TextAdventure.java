@@ -80,7 +80,7 @@ public class TextAdventure{
     public static void timePass(){
         
     }
-    public static void (){
+    public static void listAdjacentRooms(){
         if(player.location.north!=null) {
             System.out.println("To the north is the " + player.location.north.name + ".");
         }
@@ -91,7 +91,7 @@ public class TextAdventure{
             System.out.println("To the east is the " + player.location.east.name + ".");
         }
         if(player.location.west!=null) {
-            System.out.println("To the south is the " + player.location.west.name + ".");
+            System.out.println("To the west is the " + player.location.west.name + ".");
         }
         return;
     }
