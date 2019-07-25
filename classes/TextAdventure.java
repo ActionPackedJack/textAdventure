@@ -76,6 +76,14 @@ public class TextAdventure{
             System.out.println("What will you do?");
             parse(scanner.nextLine());
         }
+        if(player.alive==false){
+            System.out.println("You are dead.");
+//            switch (scanner.nextLine().toLowerCase()){
+//                case "yes":
+//                case "y":
+//                    TextAdventure.main();
+            return;
+        }
     }
     public static void timePass(){
         
@@ -355,6 +363,10 @@ public class TextAdventure{
                 System.out.println("You let out a hearty bellow at the top of your lungs.  There don't seem to be a lot of lifeforms hanging around, but you're sure that whatever IS still alive heard that.");
                 monster.interested=player.location;
                 timePass();
+                break;
+            case "die":
+                System.out.println("Overwhelmed by your desperate situation, you sit down and wait for death.  It does not take long for it to find you.");
+                player.alive=false;
                 break;
             default:
                 System.out.println("Invalid command.  Type HELP for a list of options.");
