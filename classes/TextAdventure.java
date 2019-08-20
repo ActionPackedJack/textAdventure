@@ -12,7 +12,7 @@ public class TextAdventure{
     public static void main(String[] args) {
         scanner = new Scanner(System.in);
         Room hypersleepChamber = new Room(
-            "hypersleep chamber!!!",
+            "hypersleep chamber",
             "You are standing in the ship's hypersleep chamber, lined with pods in which organic lifeforms can enter suspended animation for an extended period of time. One such pod sits open, as though its activity has just ended.",
             new Hide(
                 "pod",
@@ -53,13 +53,52 @@ public class TextAdventure{
             "You are in the surveillance room.  The walls are filled with closed-circuit television screens connected to the security cameras in each room.",
             null
         );
+        Room recreation = new Room(
+                "recreation room",
+                "You are in the recreation room.",
+                null
+        );
+        Room generator = new Room(
+                "generator room",
+                "You are in the generator room",
+                null
+        );
         Room medicalBay = new Room("medical bay", "You are in the medical bay.", null);
         Room bridge = new Room("bridge", "You are at the bridge of the ship.", null);
         Room escapePods= new Room("escape pods", "You are next to the ship's escape pods.", null);
+        captainsQuarters.south = crewQuarters;
+        crewQuarters.north = captainsQuarters;
+        crewQuarters.east = diningHall;
+        crewQuarters.south = recreation;
+        crewQuarters.vent = medicalBay;
+        recreation.north = crewQuarters;
+        recreation.south = generator;
+        recreation.east = hypersleepChamber;
+        recreation.vent = surveillance;
+        generator.north = recreation;
         hypersleepChamber.north=diningHall;
-        diningHall.south=hypersleepChamber;
+        hypersleepChamber.west = recreation;
         hypersleepChamber.east=medicalBay;
+        diningHall.east = surveillance;
+        diningHall.west = crewQuarters;
+        diningHall.south=hypersleepChamber;
+        surveillance.west = diningHall;
+        surveillance.north = cargoBay;
+        surveillance.east = bridge;
+        surveillance.south = medicalBay;
+        surveillance.vent = recreation;
+        cargoBay.south = surveillance;
+        bridge.west = surveillance;
+        bridge.south = weaponsStorage;
+        weaponsStorage.north = bridge;
+        weaponsStorage.west = medicalBay;
+        medicalBay.north = surveillance;
         medicalBay.west=hypersleepChamber;
+        medicalBay.east = weaponsStorage;
+        medicalBay.south = researchLab;
+        medicalBay.vent = crewQuarters;
+        researchLab.north = medicalBay;
+
         hypersleepChamber.hidingPlace = new Hide(
                 "pod",
                 "You crawl back inside your hypersleep pod and close the lid, but it needs to be activated from outside.  You are safe from detection, but not the ravages of time.",
