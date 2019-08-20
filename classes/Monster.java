@@ -71,5 +71,8 @@ public class Monster{
             this.location = this.moveOptions.get((int) Math.random() * this.moveOptions.size() + 1);
             this.moved = true;
         }
+        if(this.moved==true && this.lastTraveled.vent == this.location){
+            System.out.println("You hear ominous noises in the ventilation shafts.");
+        }
     }
 }
