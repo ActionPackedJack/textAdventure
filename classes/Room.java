@@ -3,7 +3,7 @@ package classes;
 import java.util.*;
 public class Room{
     public String name = null;
-    public String description = null;
+    public String description;
     public Room north = null ;
     public Room south = null;
     public Room east = null;
@@ -22,11 +22,31 @@ public class Room{
         this.hidingPlace=hidingPlace;
         this.pickups= new ArrayList<Item>();
         this.inspectables=new ArrayList<Prop>();
+        this.description=description;
     }
     public Boolean isAdjacent(Room query){
         if(this.north == query || this.south == query || this.east == query || this.west == query || this.vent == query){
             return true;
         }
         return false;
+    }
+    public List<Room> adjacentRooms(){
+        List<Room> result = new ArrayList<>();
+        if(this.south !=null){
+            result.add(this.south);
+        }
+        if(this.north !=null){
+            result.add(this.north);
+        }
+        if(this.west !=null){
+            result.add(this.west);
+        }
+        if(this.east !=null){
+            result.add(this.east);
+        }
+        if(this.vent !=null){
+            result.add(this.vent);
+        }
+        return result;
     }
 }

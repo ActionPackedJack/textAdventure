@@ -12,8 +12,8 @@ public class TextAdventure{
     public static void main(String[] args) {
         scanner = new Scanner(System.in);
         Room hypersleepChamber = new Room(
-            "hypersleep chamber",
-            "You are standing in the ship's hypersleep chamber, lined with pods in which organic lifeforms can enter suspended animation for an extended period of time. One such pod sits open, as though its activity has just ended.  To your north is the ship's dining hall.  To your east is the medical bay.",
+            "hypersleep chamber!!!",
+            "You are standing in the ship's hypersleep chamber, lined with pods in which organic lifeforms can enter suspended animation for an extended period of time. One such pod sits open, as though its activity has just ended.",
             new Hide(
                 "pod",
                 "You crawl back inside your hypersleep pod and close the lid, but it can only be activated from outside.  You are safe from detection, but not the ravages of time.",
@@ -60,7 +60,6 @@ public class TextAdventure{
         diningHall.south=hypersleepChamber;
         hypersleepChamber.east=medicalBay;
         medicalBay.west=hypersleepChamber;
-        hypersleepChamber.description= "You are in the hypersleep chamber, lined with pods in which organic lifeforms can enter suspended animation for an extended period of time. One such pod sits open, as though its activity has just ended.  To your north is the ship's dining hall.  To your east is the medical bay.";
         hypersleepChamber.hidingPlace = new Hide(
                 "pod",
                 "You crawl back inside your hypersleep pod and close the lid, but it needs to be activated from outside.  You are safe from detection, but not the ravages of time.",
@@ -169,6 +168,7 @@ public class TextAdventure{
                 if(player.location.east != null){
                     player.location = player.location.east;
                     timePass();
+                    System.out.println(player.location.name);
                     System.out.println(player.location.description);
                 }
                 else{
@@ -184,6 +184,7 @@ public class TextAdventure{
                 if(player.location.west != null){
                     player.location = player.location.west;
                     timePass();
+                    System.out.println(player.location.name);
                     System.out.println(player.location.description);
                 }
                 else{
@@ -195,6 +196,7 @@ public class TextAdventure{
                     System.out.println(player.location.hidingPlace.hideDescription);
                     break;
                 }
+                System.out.println(player.location.name);
                 System.out.println(player.location.description);
                 listAdjacentRooms();
                 break;
