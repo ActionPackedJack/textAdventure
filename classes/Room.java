@@ -49,4 +49,22 @@ public class Room{
         }
         return result;
     }
+    public String whereAdjacent(Room query){
+        if(this.north == query){
+            return "to the north";
+        }
+        if(this.south == query){
+            return "to the south";
+        }
+        if(this.east == query){
+            return "to the east";
+        }
+        if(this.west == query){
+            return "to the west";
+        }
+        if(this.vent == query){
+            return "through the ventilation system";
+        }
+        return "indeterminate direction";
+    }
 }

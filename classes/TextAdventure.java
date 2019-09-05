@@ -3,12 +3,14 @@ package classes;
 import java.util.Scanner;
 import java.util.List;
 import java.util.Arrays;
+import java.util.*;
 import classes.*;
 
 public class TextAdventure{
     static Player player;
     static Monster monster;
     static Scanner scanner;
+    static Random random;
     public static void main(String[] args) {
         scanner = new Scanner(System.in);
         Room hypersleepChamber = new Room(
@@ -124,7 +126,26 @@ public class TextAdventure{
         }
     }
     public static void timePass(){
-        
+        monster.move();
+        String[] creepyAdjectives = {
+                "unsettling",
+                "stomach-churning",
+                "ominous",
+                "bizarre",
+                "alarming",
+                "foreboding",
+        };
+        String[] creepySounds = {
+                "dripping",
+                "shuffling",
+                "creaking",
+                "growling",
+        };
+        if(player.location.isAdjacent(monster.location)){
+            int randomAdjective = random.nextInt(creepyAdjectives.length);
+            int randomSound = random.nextInt(creepySounds.length);
+            System.out.println("You hear a " + creepyAdjectives[randomAdjective] + " " + creepySounds[randomSound] + " sound " + player.location.whereAdjacent(monster.location) + ".");
+        }
     }
     public static void listAdjacentRooms(){
         if(player.location.north!=null) {
@@ -403,6 +424,10 @@ public class TextAdventure{
                 }
                 System.out.println("You let out a hearty bellow at the top of your lungs.  There don't seem to be a lot of lifeforms hanging around, but you're sure that whatever IS still alive heard that.");
                 monster.interested=player.location;
+                timePass();
+                break;
+            case "wait":
+                System.out.println("You stand still and let time pass");
                 timePass();
                 break;
             case "die":
