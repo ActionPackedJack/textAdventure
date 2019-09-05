@@ -12,6 +12,7 @@ public class Monster{
     public List<Room> moveOptions;
     public Boolean alive = true;
     public Boolean posturing = false;
+    static Random random;
     public void move(){
         this.moved = false;
         this.moveOptions = this.location.adjacentRooms();
@@ -68,10 +69,10 @@ public class Monster{
                 moveOptions.remove(this.lastTraveled);
             }
             this.lastTraveled = this.location;
-            this.location = this.moveOptions.get((int) Math.random() * this.moveOptions.size() + 1);
+            this.location = this.moveOptions.get(random.nextInt(this.moveOptions.size()));
             this.moved = true;
         }
-        if(this.moved==true && this.lastTraveled.vent == this.location){
+        if(this.moved==true && this.lastTraveled.vent == this.location) {
             System.out.println("You hear ominous noises in the ventilation shafts.");
         }
     }
