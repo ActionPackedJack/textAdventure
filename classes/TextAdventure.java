@@ -13,6 +13,7 @@ public class TextAdventure{
     static Random random;
     public static void main(String[] args) {
         scanner = new Scanner(System.in);
+        //We begin by creating all the room objects and filling in their descriptions.
         Room hypersleepChamber = new Room(
             "hypersleep chamber",
             "You are standing in the ship's hypersleep chamber, lined with pods in which organic lifeforms can enter suspended animation for an extended period of time. One such pod sits open, as though its activity has just ended.",
@@ -41,8 +42,6 @@ public class TextAdventure{
                 "You are in the research lab.  There are tables lined with samples of various liquids and minerals from all across the galaxy, though many of them have made their way to the floor.",
                 null
         );
-        monster = new Monster();
-        monster.location = cargoBay;
         Room weaponsStorage = new Room("weapons storage", "You are in the weapons storage.", null);
         Prop dashboard = new Prop(
             new String[]{"screen","monitor","console", "dashboard", "television"},
@@ -68,6 +67,7 @@ public class TextAdventure{
         Room medicalBay = new Room("medical bay", "You are in the medical bay.", null);
         Room bridge = new Room("bridge", "You are at the bridge of the ship.", null);
         Room escapePods= new Room("escape pods", "You are next to the ship's escape pods.", null);
+        //We need to link up the rooms after they have all been created so that they can find one another.
         captainsQuarters.south = crewQuarters;
         crewQuarters.north = captainsQuarters;
         crewQuarters.east = diningHall;
@@ -100,6 +100,9 @@ public class TextAdventure{
         medicalBay.south = researchLab;
         medicalBay.vent = crewQuarters;
         researchLab.north = medicalBay;
+        //We then spawn a monster and place it in the Cargo Bay.
+        monster = new Monster();
+        monster.location = cargoBay;
 
         hypersleepChamber.hidingPlace = new Hide(
                 "pod",
@@ -107,11 +110,12 @@ public class TextAdventure{
                 "You press the emergency release button from inside the pod.  The door swings open, but not before a loud beep rings out.", null,
                 "You are inside an inactive hypersleep pod.",
                 true);
-
+        //We spawn the player and place them in the Hypersleep Chamber.
         player = new Player();
         player.location = hypersleepChamber;
         //player.inventory.add(stunGrenade());
         System.out.println("You awaken from hypersleep, well rested but worried.  You are not greeted with the standard welcoming party; in fact, the ship is eerily quiet.");
+        //The below loop continuously prompts the player for input as long as an ending condition is not detected.
         while(player.alive==true && monster.alive==true) {
             System.out.println("What will you do?");
             parse(scanner.nextLine());
@@ -125,8 +129,10 @@ public class TextAdventure{
             return;
         }
     }
+    //The below code accounts for everything that happens after the player takes a turn.
     public static void timePass(){
         monster.move();
+        //The next dozen or so lines cause a randomly-generated warning to appear when the monster is in an adjacent room to the player.
         String[] creepyAdjectives = {
                 "unsettling",
                 "stomach-churning",
@@ -147,6 +153,7 @@ public class TextAdventure{
             System.out.println("You hear a " + creepyAdjectives[randomAdjective] + " " + creepySounds[randomSound] + " sound " + player.location.whereAdjacent(monster.location) + ".");
         }
     }
+    //Below is a helper method to remind the player which rooms are accessible from their current location.
     public static void listAdjacentRooms(){
         if(player.location.north!=null) {
             System.out.println("To the north is the " + player.location.north.name + ".");
@@ -162,8 +169,9 @@ public class TextAdventure{
         }
         return;
     }
-
+    //Below is the method that makes most of the action happen, by parsing the player's input.
     public static void parse(String input){
+        //These action definitions are purely for instructional purposes.
         String[] actions= {
             "NORTH: move north",
             "SOUTH: move south",
@@ -180,11 +188,13 @@ public class TextAdventure{
             "EMERGE: exit your hiding spot",
             "HELP: you seem to understand this one already",
         };
+        //We turn the input to lower case before evaluating it to cut down on any confusion.
         input = input.toLowerCase();
         switch (input){
             case "help":
             case "instructions":
             case "how to play":
+                //These commands just iterate through the instructional array and print them to the console.
                 System.out.println("Here is a list of non-secret commands (some synonyms may be accepted):");
                 for(int i=0; i<actions.length; i++){
                     System.out.println(actions[i]);
@@ -320,7 +330,6 @@ public class TextAdventure{
                 System.out.println("What will you examine?");
                 String lookAttempt = scanner.nextLine().toLowerCase();
                 if(lookAttempt.contains(player.location.hidingPlace.name.toLowerCase())){
-                    System.out.println("EXAMINING HIDING PLACE");
                     System.out.println(player.location.hidingPlace.description);
                     break;
                 }
@@ -403,25 +412,30 @@ public class TextAdventure{
                 }
                 System.out.println("You don't see one of those here.");
                 break;
+            //The below code enables a secret command that allows the player to yell.  Depending on the monster's location and some other factors, this can have various outcomes.
             case "shout":
             case "yell":
             case "scream":
             case "bellow":
             case "roar":
+                //If the monster is in the same room as the player and the player is hiding, it will find and kill them.
                 if(monster.location == player.location && player.hiding == true){
                     System.out.println("You enthusiastically greet the creature which was prowling past you paying you no mind.  You begin to regret your decision as it quickly discerns your location and tears you to pieces.");
                     player.alive = false;
                 }
+                //If the monster is in the same room as the player but they are not hiding, it will strike an intimidating pose that will momentarily make it more vulnerable.
                 if(monster.location==player.location && monster.posturing == false){
-                    System.out.println("Remembering what you read about wilderness survival in vintage magazines, you stand your ground and shout as a show of force.  Unfortunately, you suspect that the creature is not intimidated when it squats in front of you and stares directly into your eyes.  As you feel the musty warm emanating from its mouth, you suspect you may need to try something more substantial.");
+                    System.out.println("Remembering what you read about wilderness survival in vintage magazines, you stand your ground and shout as a show of force.  Unfortunately, you suspect that the creature is not intimidated when it squats in front of you and stares directly into your eyes.  As you feel the musty warmth emanating from its mouth, you suspect you may need to try something more substantial.");
                     monster.posturing = true;
                     break;
                 }
+                //...but if the player immediately shouts again, it will kill them.
                 else if(monster.location==player.location && monster.posturing == true){
                     System.out.println("The creature is done toying with you.  You see a claw shoot toward your face, and then you see nothing.");
                     player.alive = false;
                     break;
                 }
+                //The more common outcome, however, is that if the player and monster are in different rooms, the monster will hear the shout and come to investigate wherever the player was when they yelled.
                 System.out.println("You let out a hearty bellow at the top of your lungs.  There don't seem to be a lot of lifeforms hanging around, but you're sure that whatever IS still alive heard that.");
                 monster.interested=player.location;
                 timePass();
@@ -431,10 +445,12 @@ public class TextAdventure{
                 timePass();
                 break;
             case "die":
+                //Secret command smartarse players can use to kill themselves.
                 System.out.println("Overwhelmed by your desperate situation, you sit down and wait for death.  It does not take long for it to find you.");
                 player.alive=false;
                 break;
             default:
+                //If the player's command is not recognized, they will be encouraged to check the full list of commands.
                 System.out.println("Invalid command.  Type HELP for a list of options.");
 
         }
@@ -449,7 +465,7 @@ public class TextAdventure{
 //         this.name= "stun grenade";
 //         this.useText= "You throw the stun grenade on the ground and duck around a corner just before a disorienting flash and deafening roar fill the room.";
 //         this.pickUpText= "You take the stun grenade.";
-//         this.description= "A standard-issue stun grenade, sure to ruin the day (but not the life) of anyone or   anything caught in its blast radius.";
+//         this.description= "A standard-issue stun grenade, sure to ruin the day (but not the life) of anyone or anything caught in its blast radius.";
 //     // public void use(){
 //     //     return;
 //     }
