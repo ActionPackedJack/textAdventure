@@ -330,9 +330,11 @@ public class TextAdventure{
                 }
                 System.out.println("What will you examine?");
                 String lookAttempt = scanner.nextLine().toLowerCase();
-                if(lookAttempt.contains(player.location.hidingPlace.name.toLowerCase())){
-                    System.out.println(player.location.hidingPlace.description);
-                    break;
+                if(player.location.hidingPlace != null) {
+                    if (lookAttempt.contains(player.location.hidingPlace.name.toLowerCase())) {
+                        System.out.println(player.location.hidingPlace.description);
+                        break;
+                    }
                 }
                 for (int i=0; i<player.location.pickups.size(); i++){
                     if(lookAttempt.contains(player.location.pickups.get(i).name.toLowerCase())){
