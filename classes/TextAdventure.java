@@ -10,7 +10,7 @@ public class TextAdventure{
     static Player player;
     static Monster monster;
     static Scanner scanner;
-    static Random random;
+    static Random random = new Random();
     public static void main(String[] args) {
         scanner = new Scanner(System.in);
         //We begin by creating all the room objects and filling in their descriptions.
@@ -43,12 +43,6 @@ public class TextAdventure{
                 null
         );
         Room weaponsStorage = new Room("weapons storage", "You are in the weapons storage.", null);
-        Prop dashboard = new Prop(
-            new String[]{"screen","monitor","console", "dashboard", "television"},
-            "These monitors are displaying video feed from cameras placed in every room of the ship.  You could use them to keep abreast of any unusual activities on the ship.",
-            "You observe the monitors.  The ship appears to be littered with corpses, but you see no signs of life.  That is, until you glance at the camera feed in the " + monster.location.name + " and see a lifeform unlike anything you've seen before. It stands about six feet tall, has no discernible body fat, and has claws on every appendage.  Out from between its rows of pointy teeth, each longer than a human finger, drips a caustic green substance that appears to be partially melting whatever it lands on."
-            
-        );
         Room surveillance = new Room(
             "surveillance room",
             "You are in the surveillance room.  The walls are filled with closed-circuit television screens connected to the security cameras in each room.",
@@ -103,7 +97,13 @@ public class TextAdventure{
         //We then spawn a monster and place it in the Cargo Bay.
         monster = new Monster();
         monster.location = cargoBay;
+        Prop dashboard = new Prop(
+                new String[]{"screen", "monitor", "console", "dashboard", "television"},
+                "These monitors are displaying video feed from cameras placed in every room of the ship.  You could use them to keep abreast of any unusual activities on the ship.",
+                "You observe the monitors.  The ship appears to be littered with corpses, but you see no signs of life.  That is, until you glance at the camera feed in the " + monster.location.name + " and see a lifeform unlike anything you've seen before. It stands about six feet tall, has no discernible body fat, and has claws on every appendage.  Out from between its rows of pointy teeth, each longer than a human finger, drips a caustic green substance that appears to be partially melting whatever it lands on."
 
+        );
+        surveillance.inspectables.add(dashboard);
         hypersleepChamber.hidingPlace = new Hide(
                 "pod",
                 "You crawl back inside your hypersleep pod and close the lid, but it needs to be activated from outside.  You are safe from detection, but not the ravages of time.",
@@ -148,6 +148,7 @@ public class TextAdventure{
                 "growling",
         };
         if(player.location.isAdjacent(monster.location)){
+            System.out.println(random);
             int randomAdjective = random.nextInt(creepyAdjectives.length);
             int randomSound = random.nextInt(creepySounds.length);
             System.out.println("You hear a " + creepyAdjectives[randomAdjective] + " " + creepySounds[randomSound] + " sound " + player.location.whereAdjacent(monster.location) + ".");
@@ -456,17 +457,3 @@ public class TextAdventure{
         }
     }
 }
-
-
-
-
-// public class stunGrenade extends classes.Item{
-//     public stunGrenade(){
-//         this.name= "stun grenade";
-//         this.useText= "You throw the stun grenade on the ground and duck around a corner just before a disorienting flash and deafening roar fill the room.";
-//         this.pickUpText= "You take the stun grenade.";
-//         this.description= "A standard-issue stun grenade, sure to ruin the day (but not the life) of anyone or anything caught in its blast radius.";
-//     // public void use(){
-//     //     return;
-//     }
-// }

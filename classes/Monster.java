@@ -19,7 +19,7 @@ public class Monster{
     public Boolean alive = true;
     //The below data is used for a hidden interaction.
     public Boolean posturing = false;
-    static Random random;
+    static Random random = new Random();
     public void move(){
         this.moved = false;
         this.moveOptions = this.location.adjacentRooms();
