@@ -148,10 +148,35 @@ public class TextAdventure{
                 "growling",
         };
         if(player.location.isAdjacent(monster.location)){
-            System.out.println(random);
             int randomAdjective = random.nextInt(creepyAdjectives.length);
             int randomSound = random.nextInt(creepySounds.length);
             System.out.println("You hear a " + creepyAdjectives[randomAdjective] + " " + creepySounds[randomSound] + " sound " + player.location.whereAdjacent(monster.location) + ".");
+        }
+        if(player.location == monster.location){
+            String monsterDescription = new String();
+            if(monster.seen == false) {
+                monsterDescription = "a lifeform unlike anything you've seen before. It stands about six feet tall, has no discernible body fat, and has claws on every appendage.  Out from between its rows of pointy teeth, each longer than a human finger, drips a caustic green substance that appears to be partially melting whatever it lands on.";
+                monster.seen = true;
+            }
+            else{
+                monsterDescription = "the creature.";
+            }
+            if(player.hiding == false){
+                System.out.println("You suddenly find yourself standing face to thorax with " + monsterDescription + ".  It towers over you and gazes down at you ravenously.  It looks like it could pounce on you at any moment.  What will you do?");
+                monsterParse(scanner.nextLine());
+            }
+            if(player.hiding == true && monster.interested != player.location){
+                if(monsterDescription.length()>20) {
+                    System.out.println("From your concealment you observe entering the room a lifeform unlike anything you've seen before. It stands about six feet tall, has no discernible body fat, and has claws on every appendage.  Out from between its rows of pointy teeth, each longer than a human finger, drips a caustic green substance that appears to be partially melting whatever it lands on.  Fortunately, it does not seem to be aware of your presence.");
+                }
+                else{
+                    System.out.println("The extraterrestrial enters the room, but does not appear to notice you.");
+                }
+            }
+            if(player.hiding == true && monster.interested == player.location){
+                System.out.println("The alien bursts into the room and begins searching for the source of the noise.  It uncovers your hiding spot and eviscerates you before you can leave it.");
+                player.alive = false;
+            }
         }
     }
     //Below is a helper method to remind the player which rooms are accessible from their current location.
@@ -425,17 +450,6 @@ public class TextAdventure{
                 if(monster.location == player.location && player.hiding == true){
                     System.out.println("You enthusiastically greet the creature which was prowling past you paying you no mind.  You begin to regret your decision as it quickly discerns your location and tears you to pieces.");
                     player.alive = false;
-                }
-                //If the monster is in the same room as the player but they are not hiding, it will strike an intimidating pose that will momentarily make it more vulnerable.
-                if(monster.location==player.location && monster.posturing == false){
-                    System.out.println("Remembering what you read about wilderness survival in vintage magazines, you stand your ground and shout as a show of force.  Unfortunately, you suspect that the creature is not intimidated when it squats in front of you and stares directly into your eyes.  As you feel the musty warmth emanating from its mouth, you suspect you may need to try something more substantial.");
-                    monster.posturing = true;
-                    break;
-                }
-                //...but if the player immediately shouts again, it will kill them.
-                else if(monster.location==player.location && monster.posturing == true){
-                    System.out.println("The creature is done toying with you.  You see a claw shoot toward your face, and then you see nothing.");
-                    player.alive = false;
                     break;
                 }
                 //The more common outcome, however, is that if the player and monster are in different rooms, the monster will hear the shout and come to investigate wherever the player was when they yelled.
@@ -444,7 +458,7 @@ public class TextAdventure{
                 timePass();
                 break;
             case "wait":
-                System.out.println("You stand still and let time pass");
+                System.out.println("You stand still and let time pass.");
                 timePass();
                 break;
             case "die":
@@ -456,6 +470,61 @@ public class TextAdventure{
                 //If the player's command is not recognized, they will be encouraged to check the full list of commands.
                 System.out.println("Invalid command.  Type HELP for a list of options.");
 
+        }
+    }
+    //The below method handles similar inputs to parse() but gives different results to account for the monster preparing to attack the player.
+    public static void monsterParse(String input){
+        input = input.toLowerCase();
+        switch (input){
+            case "north":
+            case "n":
+            case "south":
+            case "s":
+            case "east":
+            case "e":
+            case "west":
+            case "w":
+            case "run":
+            case "flee":
+                System.out.println("You try to flee, but you are unable to travel more than a few steps before you feel the beast's weight on top of you.  You hear a loud shriek, feel something sharp piercing into your back, and then you don't feel much of anything at all.");
+                player.alive = false;
+                break;
+            case "hide":
+                System.out.println("Hiding typically works better against enemies that aren't already staring at you.  Besides, you doubt you could keep quiet now that your face is currently dissolving in acid.");
+                player.alive = false;
+                break;
+            case "shout":
+            case "yell":
+            case "scream":
+            case "bellow":
+            case "roar":
+                if(monster.posturing == false) {
+                    System.out.println("Remembering what you read about wilderness survival in vintage magazines, you stand your ground and shout as a show of force.  Unfortunately, you suspect that the creature is not intimidated when it squats in front of you and stares directly into your eyes.  As you feel the musty warmth emanating from its mouth, you suspect you may need to try something more substantial.  Any ideas?");
+                    monster.posturing = true;
+                    monsterParse(scanner.nextLine());
+                    break;
+                }
+                else{
+                    System.out.println("The creature is done toying with you.  You see a claw shoot toward your face, and then you see nothing.");
+                    player.alive = false;
+                    break;
+                }
+            case "wait":
+                System.out.println("Hoping that the alien's vision is based on movement, you stand perfectly still in an attempt to confuse it.  Your gamble, however, does not pay off.");
+                player.alive = false;
+                break;
+            case "look":
+                System.out.println("You examine your surroundings.  Let's see... floor, ceiling, entrails being ripped out of your body and chewed up.  Yeah, the usual.");
+                player.alive = false;
+                break;
+            case "die":
+                System.out.println("You accept your fate with quiet dignity.  After all, your high school graduating class was right to name you 'Most Easygoing.'  The monster almost looks disappointed as it dispassionately devours you.");
+                player.alive = false;
+                break;
+            default:
+                System.out.println("You think you have some kind of idea, but are too confused to execute it.  The creature leaps forward and catches your face between its talons, then everything goes black.");
+                player.alive = false;
+                break;
         }
     }
 }

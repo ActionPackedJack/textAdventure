@@ -2,7 +2,7 @@ package classes;
 
 import java.util.*;
 public class Monster{
-    public int alert = 0;
+    public Boolean alert = false;
     //The below data will keep the monster from taking action if it is true.
     public boolean stunned = false;
     public Room location;
