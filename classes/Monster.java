@@ -19,8 +19,14 @@ public class Monster{
     public Boolean alive = true;
     //The below data is used for a hidden interaction.
     public Boolean posturing = false;
+    //The below data can be set to true to keep the monster from moving for a turn.
+    public Boolean searching = false;
     static Random random = new Random();
     public void move(){
+        if(this.searching == true){
+            this.searching = false;
+            return;
+        }
         this.moved = false;
         this.moveOptions = this.location.adjacentRooms();
         if(this.interested == this.location) {

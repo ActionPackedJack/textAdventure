@@ -423,8 +423,7 @@ public class TextAdventure{
                                 timePass();
                                 break;
                             } else {
-                                System.out.println(player.location.inspectables.get(i).useText);
-                                timePass();
+                                useProp(player.location.inspectables.get(i).name[0]);
                                 break;
                             }
                         }
@@ -525,6 +524,28 @@ public class TextAdventure{
                 System.out.println("You think you have some kind of idea, but are too confused to execute it.  The creature leaps forward and catches your face between its talons, then everything goes black.");
                 player.alive = false;
                 break;
+        }
+    }
+    public static void useProp(String name){
+        switch (name){
+            case "screen":
+                if(monster.seen == false) {
+                    System.out.println("You observe the monitors.  The ship appears to be littered with corpses, but you see no signs of life.  That is, until you glance at the camera feed in the " + monster.location.name + " and see a lifeform unlike anything you've seen before. It stands about six feet tall, has no discernible body fat, and has claws on every appendage.  Out from between its rows of pointy teeth, each longer than a human finger, drips a caustic green substance that appears to be partially melting whatever it lands on.");
+                    monster.seen = true;
+                    break;
+                }
+                else if (monster.interested == null){
+                    System.out.println("You observe the monitors. Your nemesis appears to be wandering through the " + monster.location.name + ".");
+                    break;
+                }
+                else if (monster.searching == true){
+                    System.out.println("You observe the monitors. The trespasser appears to be curiously poking about the " + monster.location.name + ".");
+                    break;
+                }
+                else if (monster.interested != null) {
+                    System.out.println("You observe the monitors. The trespasser appears to be hastily bounding through the " + monster.location.name + ".");
+                    break;
+                }
         }
     }
 }
