@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="360120eb-41b0-42d5-b93e-3595c4643fa1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/classes/Monster.java" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Monster.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/TextAdventure.java" beforeDir="false" afterPath="$PROJECT_DIR$/classes/TextAdventure.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -20,8 +19,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/classes/TextAdventure.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="888">
-              <caret line="546" column="26" selection-start-line="546" selection-start-column="26" selection-end-line="546" selection-end-column="26" />
+            <state relative-caret-position="174">
+              <caret line="465" column="207" lean-forward="true" selection-start-line="465" selection-start-column="207" selection-end-line="465" selection-end-column="207" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -121,6 +120,7 @@
       <find>timepass</find>
       <find>hoping</find>
       <find>location</find>
+      <find>y</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -322,8 +322,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/classes/TextAdventure.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="888">
-          <caret line="546" column="26" selection-start-line="546" selection-start-column="26" selection-end-line="546" selection-end-column="26" />
+        <state relative-caret-position="174">
+          <caret line="465" column="207" lean-forward="true" selection-start-line="465" selection-start-column="207" selection-end-line="465" selection-end-column="207" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

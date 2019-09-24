@@ -349,6 +349,7 @@ public class TextAdventure{
             case "look at":
             case "examine":
             case "inspect":
+                Boolean found = false;
                 if(player.hiding == true){
                     System.out.println("You are a little too cramped to do that.");
                     break;
@@ -358,12 +359,14 @@ public class TextAdventure{
                 if(player.location.hidingPlace != null) {
                     if (lookAttempt.contains(player.location.hidingPlace.name.toLowerCase())) {
                         System.out.println(player.location.hidingPlace.description);
+                        found = true;
                         break;
                     }
                 }
                 for (int i=0; i<player.location.pickups.size(); i++){
                     if(lookAttempt.contains(player.location.pickups.get(i).name.toLowerCase())){
                         System.out.println(player.location.pickups.get(i).description);
+                        found = true;
                         break;
                     }
                 }
@@ -371,16 +374,20 @@ public class TextAdventure{
                     for (int j = 0; j < player.location.inspectables.get(i).name.length; j++) {
                         if(player.location.inspectables.get(i).name[j].contains(lookAttempt)) {
                             System.out.println(player.location.inspectables.get(i).description);
+                            found = true;
                         }
                     }
                 }
                 for (int i=0; i<player.inventory.size(); i++){
                     if(lookAttempt.contains(player.inventory.get(i).name.toLowerCase())){
                         System.out.println(player.inventory.get(i).description);
+                        found = true;
                         break;
                     }
                 }
-                System.out.println("You don't see one of those here.");
+                if(found == false) {
+                    System.out.println("You don't see one of those here.");
+                }
                 break;
             case "pick up":
             case "pickup":
@@ -413,6 +420,7 @@ public class TextAdventure{
                     break;
                 }
             case "use":
+                Boolean used = false;
                 System.out.println("What will you use?");
                 String useAttempt = scanner.nextLine().toLowerCase();
                 for(int i=0; i<player.location.inspectables.size(); i++){
@@ -420,10 +428,12 @@ public class TextAdventure{
                         if(player.location.inspectables.get(i).name[j].contains(useAttempt)) {
                             if (player.location.inspectables.get(i).useText == null) {
                                 System.out.println("You cannot discern a productive way to use that.");
+                                used = true;
                                 timePass();
                                 break;
                             } else {
                                 useProp(player.location.inspectables.get(i).name[0]);
+                                used = true;
                                 break;
                             }
                         }
@@ -433,11 +443,13 @@ public class TextAdventure{
                     if(useAttempt.contains(player.inventory.get(i).name.toLowerCase())){
                         System.out.println(player.inventory.get(i).useText);
                        // player.inventory.get(i).use();
-                        timePass();
+                        used = true;
                         break;
                     }
                 }
-                System.out.println("You don't see one of those here.");
+                if(used == false) {
+                    System.out.println("You don't see one of those here.");
+                }
                 break;
             //The below code enables a secret command that allows the player to yell.  Depending on the monster's location and some other factors, this can have various outcomes.
             case "shout":
