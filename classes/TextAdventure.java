@@ -292,7 +292,6 @@ public class TextAdventure{
                     System.out.println(player.location.hidingPlace.hideDescription);
                     break;
                 }
-                System.out.println(player.location.name);
                 System.out.println(player.location.description);
                 listAdjacentRooms();
                 break;
