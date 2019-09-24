@@ -30,7 +30,7 @@ public class TextAdventure{
                 "cargo bay",
                 "You are standing in the ship's cargo bay",
                 null);
-        Room diningHall = new Room("dining hall", "You are standing in the ship's dining hall", null);
+        Room diningHall = new Room("dining hall", "You are standing in the ship's dining hall.", null);
         Room crewQuarters = new Room("crew quarters", "You are standing in the crew quarters", null);
         Room captainsQuarters = new Room(
             "captain's quarters",
