@@ -134,12 +134,12 @@ public class TextAdventure{
         monster.move();
         //The next dozen or so lines cause a randomly-generated warning to appear when the monster is in an adjacent room to the player.
         String[] creepyAdjectives = {
-                "unsettling",
-                "stomach-churning",
-                "ominous",
-                "bizarre",
-                "alarming",
-                "foreboding",
+                "n unsettling",
+                " stomach-churning",
+                "n ominous",
+                " bizarre",
+                "n alarming",
+                " foreboding",
         };
         String[] creepySounds = {
                 "dripping",
@@ -150,7 +150,7 @@ public class TextAdventure{
         if(player.location.isAdjacent(monster.location)){
             int randomAdjective = random.nextInt(creepyAdjectives.length);
             int randomSound = random.nextInt(creepySounds.length);
-            System.out.println("You hear a " + creepyAdjectives[randomAdjective] + " " + creepySounds[randomSound] + " sound " + player.location.whereAdjacent(monster.location) + ".");
+            System.out.println("You hear a" + creepyAdjectives[randomAdjective] + " " + creepySounds[randomSound] + " sound " + player.location.whereAdjacent(monster.location) + ".");
         }
         if(player.location == monster.location){
             String monsterDescription = new String();
