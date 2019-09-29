@@ -55,7 +55,7 @@ public class TextAdventure{
         );
         Room generator = new Room(
                 "generator room",
-                "You are in the generator room",
+                "You are in the generator room.",
                 null
         );
         Room medicalBay = new Room("medical bay", "You are in the medical bay.", null);
