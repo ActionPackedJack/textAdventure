@@ -100,8 +100,7 @@ public class TextAdventure{
         Prop dashboard = new Prop(
                 new String[]{"screen", "monitor", "console", "dashboard", "television"},
                 "These monitors are displaying video feed from cameras placed in every room of the ship.  You could use them to keep abreast of any unusual activities on the ship.",
-                "You observe the monitors.  The ship appears to be littered with corpses, but you see no signs of life.  That is, until you glance at the camera feed in the " + monster.location.name + " and see a lifeform unlike anything you've seen before. It stands about six feet tall, has no discernible body fat, and has claws on every appendage.  Out from between its rows of pointy teeth, each longer than a human finger, drips a caustic green substance that appears to be partially melting whatever it lands on."
-
+                true
         );
         surveillance.inspectables.add(dashboard);
         hypersleepChamber.hidingPlace = new Hide(
@@ -425,7 +424,7 @@ public class TextAdventure{
                 for(int i=0; i<player.location.inspectables.size(); i++){
                     for(int j=0; j<player.location.inspectables.get(i).name.length; j++){
                         if(player.location.inspectables.get(i).name[j].contains(useAttempt)) {
-                            if (player.location.inspectables.get(i).useText == null) {
+                            if (player.location.inspectables.get(i).usable == false) {
                                 System.out.println("You cannot discern a productive way to use that.");
                                 used = true;
                                 timePass();
