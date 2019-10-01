@@ -23,7 +23,7 @@ public class TextAdventure{
             "hypersleep chamber",
             "You are standing in the ship's hypersleep chamber, lined with pods in which organic lifeforms can enter suspended animation for an extended period of time. One such pod sits open, as though its activity has just ended.",
             new Hide(
-                "pod",
+                    new String[]{"pod", "hypersleep"},
                 "You crawl back inside your hypersleep pod and close the lid, but it can only be activated from outside.  You are safe from detection, but not the ravages of time.",
                 "You press the emergency release button from inside the pod.  The door swings open, but not before a loud beep rings out.",
                 "This pod lays idle, its door open.  You could fit inside it if you so desired.",
@@ -38,7 +38,7 @@ public class TextAdventure{
         Room diningHall = new Room("dining hall",
                 "You are standing in the ship's dining hall.  The floors are riddled with discarded lunch trays and stained with what you hope is ketchup. A large refrigerator hums softly in the corner, and a few cabinets line the wall.",
                 new Hide(
-                        "bench",
+                        new String[]{"bench", "table"},
                         "You duck underneath a bench.  You find a few insects, but they are too busy feasting to pay you any mind.",
                         "You crawl out from under the bench and stand up.",
                         "Just some standard tables where you used to eat your meals.  Some of them are decorated with rotting half-eaten food.",
@@ -131,7 +131,7 @@ public class TextAdventure{
         );
         surveillance.inspectables.add(dashboard);
         hypersleepChamber.hidingPlace = new Hide(
-                "pod",
+                new String[]{"pod", "hypersleep"},
                 "You crawl back inside your hypersleep pod and close the lid, but it needs to be activated from outside.  You are safe from detection, but not the ravages of time.",
                 "You press the emergency release button from inside the pod.  The door swings open, but not before a loud beep rings out.", null,
                 "You are inside an inactive hypersleep pod.",
@@ -344,8 +344,9 @@ public class TextAdventure{
                     break;
                 }
                 System.out.println("Where will you hide?");
-                String hideAttempt = scanner.nextLine();
-                if(hideAttempt.toLowerCase().contains(player.location.hidingPlace.name.toLowerCase())){
+                String hideAttempt = scanner.nextLine().toLowerCase();
+                for (int i = 0; i < player.location.hidingPlace.name.length; i++)
+                if(hideAttempt.contains(player.location.hidingPlace.name[i])){
                     System.out.println(player.location.hidingPlace.hideText);
                     player.hiding=true;
                     System.out.println("Type 'emerge' to leave your hiding spot.");
@@ -382,10 +383,12 @@ public class TextAdventure{
                 System.out.println("What will you examine?");
                 String lookAttempt = scanner.nextLine().toLowerCase();
                 if(player.location.hidingPlace != null) {
-                    if (lookAttempt.contains(player.location.hidingPlace.name.toLowerCase())) {
-                        System.out.println(player.location.hidingPlace.description);
-                        found = true;
-                        break;
+                    for(int i = 0; i < player.location.hidingPlace.name.length; i++){
+                        if (lookAttempt.contains(player.location.hidingPlace.name[i])) {
+                            System.out.println(player.location.hidingPlace.description);
+                            found = true;
+                            break;
+                        }
                     }
                 }
                 for (int i=0; i<player.location.pickups.size(); i++){
@@ -436,9 +439,13 @@ public class TextAdventure{
                         }
                     }
                 }
-                if(pickUpAttempt.contains(player.location.hidingPlace.name)){
-                    System.out.println("You cannot pick that up.");
-                    break;
+                if(player.location.hidingPlace != null){
+                    for(int i = 0; i < player.location.hidingPlace.name.length; i++){
+                        if(pickUpAttempt.contains(player.location.hidingPlace.name[i])){
+                            System.out.println("You are in decent physical shape, but even for you it would be rather impractical to carry the " + player.location.hidingPlace.name[i] + " around.  You decide to leave it where it is.");
+                            break;
+                        }
+                    }
                 }
                 else{
                     System.out.println("You don't see one of those here.");
