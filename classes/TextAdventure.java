@@ -11,6 +11,11 @@ public class TextAdventure{
     static Monster monster;
     static Scanner scanner;
     static Random random = new Random();
+//    static Prop refigerator = new Prop (
+//            new String[]{"refrigerator", "fridge", "cooler", "icebox"},
+//            "A Kensington Frostmaster boasting some frankly ludicrous technological advancements. A screen displays a series of photographs, ice can be dispensed in 30 different shapes, and a dial allows the internal temperature to be adjusted to irresponsibly cold levels.",
+//            true
+//    );
     public static void main(String[] args) {
         scanner = new Scanner(System.in);
         //We begin by creating all the room objects and filling in their descriptions.
@@ -30,7 +35,16 @@ public class TextAdventure{
                 "cargo bay",
                 "You are standing in the ship's cargo bay",
                 null);
-        Room diningHall = new Room("dining hall", "You are standing in the ship's dining hall.", null);
+        Room diningHall = new Room("dining hall",
+                "You are standing in the ship's dining hall.  The floors are riddled with discarded lunch trays and stained with what you hope is ketchup. A large refrigerator hums softly in the corner, and a few cabinets line the wall.",
+                new Hide(
+                        "bench",
+                        "You duck underneath a bench.  You find a few insects, but they are too busy feasting to pay you any mind.",
+                        "You crawl out from under the bench and stand up.",
+                        "Just some standard tables where you used to eat your meals.  Some of them are decorated with rotting half-eaten food.",
+                        "You are squatting beneath a bench in the ship's dining hall.",
+                        false
+                ));
         Room crewQuarters = new Room("crew quarters", "You are standing in the crew quarters", null);
         Room captainsQuarters = new Room(
             "captain's quarters",
@@ -97,6 +111,19 @@ public class TextAdventure{
         //We then spawn a monster and place it in the Cargo Bay.
         monster = new Monster();
         monster.location = cargoBay;
+        Prop refrigerator = new Prop (
+            new String[]{"refrigerator", "fridge", "cooler", "icebox"},
+            "A Kensington Frostmaster boasting some frankly ludicrous technological advancements. A screen displays a series of photographs, ice can be dispensed in 30 different shapes, and a dial allows the internal temperature to be adjusted to irresponsibly cold levels.",
+            true
+        );
+        diningHall.inspectables.add(refrigerator);
+        Prop dial = new Prop (
+            new String[]{"dial", "thermostat"},
+            "This dial allows the adjustment of the refrigerator's internal temperature.  It is currently set to a reasonable level.",
+            true
+        );
+        diningHall.inspectables.add(dial);
+        System.out.println(diningHall.inspectables);
         Prop dashboard = new Prop(
                 new String[]{"screen", "monitor", "console", "dashboard", "television"},
                 "These monitors are displaying video feed from cameras placed in every room of the ship.  You could use them to keep abreast of any unusual activities on the ship.",
@@ -556,6 +583,12 @@ public class TextAdventure{
                     System.out.println("You observe the monitors. The trespasser appears to be hastily bounding through the " + monster.location.name + ".");
                     break;
                 }
+            case "dial":
+//                if(refrigerator.active = false){
+//
+//                }
+            case "refrigerator":
+//                if(){}
         }
     }
 }
