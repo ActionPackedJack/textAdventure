@@ -11,6 +11,7 @@ public class TextAdventure{
     static Monster monster;
     static Scanner scanner;
     static Random random = new Random();
+    static Prop refrigerator;
 //    static Prop refigerator = new Prop (
 //            new String[]{"refrigerator", "fridge", "cooler", "icebox"},
 //            "A Kensington Frostmaster boasting some frankly ludicrous technological advancements. A screen displays a series of photographs, ice can be dispensed in 30 different shapes, and a dial allows the internal temperature to be adjusted to irresponsibly cold levels.",
@@ -111,7 +112,7 @@ public class TextAdventure{
         //We then spawn a monster and place it in the Cargo Bay.
         monster = new Monster();
         monster.location = cargoBay;
-        Prop refrigerator = new Prop (
+        refrigerator = new Prop (
             new String[]{"refrigerator", "fridge", "cooler", "icebox"},
             "A Kensington Frostmaster boasting some frankly ludicrous technological advancements. A screen displays a series of photographs, ice can be dispensed in 30 different shapes, and a dial allows the internal temperature to be adjusted to irresponsibly cold levels.",
             true
@@ -357,11 +358,11 @@ public class TextAdventure{
                     System.out.println("You cannot hide there.");
                     break;
                 }
+                break;
             case "emerge":
             case "unhide":
                 if(player.hiding == false){
                     System.out.println("You are already sitting in plain view.");
-                    break;
                 }
                 else{
                     player.hiding = false;
@@ -370,8 +371,8 @@ public class TextAdventure{
                         monster.interested = player.location;
                     }
                     timePass();
-                    break;
                 }
+                break;
             case "look at":
             case "examine":
             case "inspect":
@@ -451,6 +452,7 @@ public class TextAdventure{
                     System.out.println("You don't see one of those here.");
                     break;
                 }
+                break;
             case "use":
                 Boolean used = false;
                 System.out.println("What will you use?");
@@ -591,9 +593,15 @@ public class TextAdventure{
                     break;
                 }
             case "dial":
-//                if(refrigerator.active = false){
-//
-//                }
+                if(refrigerator.active == false){
+                    System.out.println("You turn the refrigerator's internal temperature down to zero degrees Kelvin.");
+                    refrigerator.active = true;
+                }
+                else{
+                    System.out.println("You set the refrigerator's internal temperature back to a sane level.");
+                    refrigerator.active = false;
+                }
+                break;
             case "refrigerator":
 //                if(){}
         }
