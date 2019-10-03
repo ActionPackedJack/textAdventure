@@ -9,6 +9,7 @@ public class Player{
     public boolean hiding = false;
     public int health = 10;
     public boolean alive = true;
+    public boolean invisible = false;
     
     public Player (){
         this.inventory = new ArrayList();
@@ -17,5 +18,6 @@ public class Player{
         this.hiding = false;
         this.bleeding = false;
         this.alive = true;
+        this.invisible = false;
     }
 }

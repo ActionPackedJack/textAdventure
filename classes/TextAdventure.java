@@ -12,6 +12,7 @@ public class TextAdventure{
     static Scanner scanner;
     static Random random = new Random();
     static Prop refrigerator;
+    static Prop dial;
 //    static Prop refigerator = new Prop (
 //            new String[]{"refrigerator", "fridge", "cooler", "icebox"},
 //            "A Kensington Frostmaster boasting some frankly ludicrous technological advancements. A screen displays a series of photographs, ice can be dispensed in 30 different shapes, and a dial allows the internal temperature to be adjusted to irresponsibly cold levels.",
@@ -118,7 +119,7 @@ public class TextAdventure{
             true
         );
         diningHall.inspectables.add(refrigerator);
-        Prop dial = new Prop (
+        dial = new Prop (
             new String[]{"dial", "thermostat"},
             "This dial allows the adjustment of the refrigerator's internal temperature.  It is currently set to a reasonable level.",
             true
@@ -179,7 +180,7 @@ public class TextAdventure{
             int randomSound = random.nextInt(creepySounds.length);
             System.out.println("You hear a" + creepyAdjectives[randomAdjective] + " " + creepySounds[randomSound] + " sound " + player.location.whereAdjacent(monster.location) + ".");
         }
-        if(player.location == monster.location){
+        if(player.location == monster.location && player.invisible == false){
             String monsterDescription = new String();
             if(monster.seen == false) {
                 monsterDescription = "a lifeform unlike anything you've seen before. It stands about six feet tall, has no discernible body fat, and has claws on every appendage.  Out from between its rows of pointy teeth, each longer than a human finger, drips a caustic green substance that appears to be partially melting whatever it lands on.";
@@ -511,10 +512,14 @@ public class TextAdventure{
                 System.out.println("Overwhelmed by your desperate situation, you sit down and wait for death.  It does not take long for it to find you.");
                 player.alive=false;
                 break;
+            case "lone speck of dust floating in the wind":
+                System.out.println("CHEAT ENABLED: Invisibility");
+                player.invisible = true;
+                break;
             default:
                 //If the player's command is not recognized, they will be encouraged to check the full list of commands.
                 System.out.println("Invalid command.  Type HELP for a list of options.");
-
+                break;
         }
     }
     //The below method handles similar inputs to parse() but gives different results to account for the monster preparing to attack the player.
@@ -596,14 +601,23 @@ public class TextAdventure{
                 if(refrigerator.active == false){
                     System.out.println("You turn the refrigerator's internal temperature down to zero degrees Kelvin.");
                     refrigerator.active = true;
+                    dial.description = "This dial allows the adjustment of the refrigerator's internal temperature.  It is currently set to zero degrees kelvin.";
                 }
                 else{
                     System.out.println("You set the refrigerator's internal temperature back to a sane level.");
                     refrigerator.active = false;
+                    dial.description = "This dial allows the adjustment of the refrigerator's internal temperature.  It is currently set to a reasonable level.";
                 }
                 break;
             case "refrigerator":
-//                if(){}
+              if(refrigerator.active == true){
+                  System.out.println("You open the refrigerator and are immediately frozen solid by a blast of frigid air.");
+                  player.alive = false;
+              }
+              else{
+                  System.out.println("You peer inside the refrigerator, but there does not seem to be anything edible inside.");
+              }
+              break;
         }
     }
 }
