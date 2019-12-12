@@ -13,6 +13,7 @@ public class TextAdventure{
     static Random random = new Random();
     static Prop refrigerator;
     static Prop dial;
+    static Item remote;
 //    static Prop refigerator = new Prop (
 //            new String[]{"refrigerator", "fridge", "cooler", "icebox"},
 //            "A Kensington Frostmaster boasting some frankly ludicrous technological advancements. A screen displays a series of photographs, ice can be dispensed in 30 different shapes, and a dial allows the internal temperature to be adjusted to irresponsibly cold levels.",
@@ -124,8 +125,13 @@ public class TextAdventure{
             "This dial allows the adjustment of the refrigerator's internal temperature.  It is currently set to a reasonable level.",
             true
         );
+        remote = new Item(
+                "remote control",
+                "A remote control emblazoned with the word 'Kensignton.' It has a dial marked 'temperature' and buttons marked 'door,' 'cubed' and 'crushed.'",
+                "You take the remote."
+        );
         diningHall.inspectables.add(dial);
-        System.out.println(diningHall.inspectables);
+        crewQuarters.pickups.add(remote);
         Prop dashboard = new Prop(
                 new String[]{"screen", "monitor", "console", "dashboard", "television"},
                 "These monitors are displaying video feed from cameras placed in every room of the ship.  You could use them to keep abreast of any unusual activities on the ship.",
@@ -476,7 +482,7 @@ public class TextAdventure{
                 }
                 for(int i=0; i<player.inventory.size(); i++){
                     if(useAttempt.contains(player.inventory.get(i).name.toLowerCase())){
-                        System.out.println(player.inventory.get(i).useText);
+                        useItem(player.inventory.get(i).name);
                        // player.inventory.get(i).use();
                         used = true;
                         break;
@@ -618,6 +624,73 @@ public class TextAdventure{
                   System.out.println("You peer inside the refrigerator, but there does not seem to be anything edible inside.");
               }
               break;
+        }
+    }
+    public static void useItem(String name){
+        switch(name){
+            case "remote":
+                System.out.println("Which function will you operate?");
+                switch(scanner.nextLine()){
+                    case "temperature":
+                        if(refrigerator.active == false){
+                            System.out.println("You turn the temperature dial all the way down.");
+                            refrigerator.active = true;
+                        }
+                        else{
+                            System.out.println("You set the temperature dial somewhere in the middle.");
+                            refrigerator.active = false;
+                        }
+                        break;
+                    case "door":
+                        if(player.location.name != "dining hall" && monster.location.name != "dining hall"){
+                            if(refrigerator.active == false){
+                                System.out.println("Somewhere, something pointless happens.");
+                            }
+                            else{
+                                System.out.println("Somewhere, something extremely dangerous but ultimately inconsequential happens.");
+                            }
+                            break;
+                        }
+                        if(player.location.name == "dining hall" && monster.location.name != "dining hall"){
+                            if(refrigerator.active == false){
+                                System.out.println("Wheeee!  The refrigerator door swings open, then closes.  What fun!  Okay, now how about doing something to prevent your impending hideous demise?");
+                            }
+                            else{
+                                if(player.hiding == true){
+                                    System.out.println("The refrigerator door swings open, releasing a burst of impossibly cold air.  Thankfully, you are safely out of the blast radius.");
+                                }
+                                else{
+                                    System.out.println("The refrigerator door swings open, releasing a burst of frigid air that freezes you solid.");
+                                    player.alive = false;
+                                }
+                            }
+                            break;
+                        }
+                    case "cubed":
+                    case "crushed":
+                        if(refrigerator.iceMaker == "broken"){
+                            System.out.println("Nothing happens.");
+                        }
+                        if(refrigerator.iceMaker == "active"){
+                            if(player.location.name == "dining hall"){
+                                System.out.println("The refrigerator stops dispensing ice.");
+                            }
+                            else{
+                                System.out.println("The dining hall becomes significantly quieter.");
+                            }
+                            refrigerator.iceMaker = "inactive";
+                        }
+                        if(refrigerator.iceMaker == "inactive"){
+                            if(player.location.name == "dining hall"){
+                                System.out.println("The refrigerator begins loudly expelling high volumes of ice.");
+                            }
+                            else{
+                                System.out.println("You hear a loud, sustained rumbling sound coming from the dining hall.");
+                            }
+                            refrigerator.iceMaker = "active";
+                        }
+                        break;
+                }
         }
     }
 }

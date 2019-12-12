@@ -6,11 +6,13 @@ public class Prop{
     public String description;
     public Boolean usable;
     public Boolean active;
+    public String iceMaker;
 
     public Prop(String[] name, String description, Boolean usable){
         this.name=name;
         this.description=description;
         this.usable=usable;
         this.active = false;
+        this.iceMaker = "inactive";
     }
 }
