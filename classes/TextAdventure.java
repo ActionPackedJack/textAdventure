@@ -13,12 +13,8 @@ public class TextAdventure{
     static Random random = new Random();
     static Prop refrigerator;
     static Prop dial;
+    static Prop beds;
     static Item remote;
-//    static Prop refigerator = new Prop (
-//            new String[]{"refrigerator", "fridge", "cooler", "icebox"},
-//            "A Kensington Frostmaster boasting some frankly ludicrous technological advancements. A screen displays a series of photographs, ice can be dispensed in 30 different shapes, and a dial allows the internal temperature to be adjusted to irresponsibly cold levels.",
-//            true
-//    );
     public static void main(String[] args) {
         scanner = new Scanner(System.in);
         //We begin by creating all the room objects and filling in their descriptions.
@@ -113,6 +109,14 @@ public class TextAdventure{
         researchLab.north = medicalBay;
         //We then spawn a monster and place it in the Cargo Bay.
         monster = new Monster();
+        crewQuarters.hidingPlace = new Hide (
+                new String[]{"beds", "bed"},
+                "You crawl underneath a bed.",
+                "You slide out from under the bed",
+                "Two rows of bunk beds line the room.  Underneath one of them, you see a small black rectangle.",
+                "You are underneath a bed in the crew quarters.",
+                false
+        );
         monster.location = cargoBay;
         refrigerator = new Prop (
             new String[]{"refrigerator", "fridge", "cooler", "icebox"},
@@ -126,7 +130,7 @@ public class TextAdventure{
             true
         );
         remote = new Item(
-                "remote control",
+                new String[]{"remote control", "remote", "rectangle"},
                 "A remote control emblazoned with the word 'Kensignton.' It has a dial marked 'temperature' and buttons marked 'door,' 'cubed' and 'crushed.'",
                 "You take the remote."
         );
@@ -400,10 +404,12 @@ public class TextAdventure{
                     }
                 }
                 for (int i=0; i<player.location.pickups.size(); i++){
-                    if(lookAttempt.contains(player.location.pickups.get(i).name.toLowerCase())){
-                        System.out.println(player.location.pickups.get(i).description);
-                        found = true;
-                        break;
+                    for(int j=0; j<player.location.pickups.get(i).name.length; j++) {
+                        if (lookAttempt.contains(player.location.pickups.get(i).name[j])) {
+                            System.out.println(player.location.pickups.get(i).description);
+                            found = true;
+                            break;
+                        }
                     }
                 }
                 for(int i=0; i<player.location.inspectables.size(); i++) {
@@ -415,10 +421,12 @@ public class TextAdventure{
                     }
                 }
                 for (int i=0; i<player.inventory.size(); i++){
-                    if(lookAttempt.contains(player.inventory.get(i).name.toLowerCase())){
-                        System.out.println(player.inventory.get(i).description);
-                        found = true;
-                        break;
+                    for (int j = 0; j< player.inventory.get(i).name.length; j++) {
+                        if (lookAttempt.contains(player.inventory.get(i).name[j])) {
+                            System.out.println(player.inventory.get(i).description);
+                            found = true;
+                            break;
+                        }
                     }
                 }
                 if(found == false) {
@@ -432,12 +440,14 @@ public class TextAdventure{
                 System.out.println("What will you take?");
                 String pickUpAttempt = scanner.nextLine().toLowerCase();
                 for(int i=0; i<player.location.pickups.size(); i++){
-                    if(pickUpAttempt.contains(player.location.pickups.get(i).name.toLowerCase())){
-                        System.out.println(player.location.pickups.get(i).pickUpText);
-                        player.inventory.add(player.location.pickups.get(i));
-                        player.location.pickups.remove(i);
-                        timePass();
-                        break;
+                    for (int j = 0; j < player.location.pickups.get(i).name.length; j++) {
+                        if (pickUpAttempt.contains(player.location.pickups.get(i).name[j])) {
+                            System.out.println(player.location.pickups.get(i).pickUpText);
+                            player.inventory.add(player.location.pickups.get(i));
+                            player.location.pickups.remove(i);
+                            timePass();
+                            break;
+                        }
                     }
                 }
                 for(int i=0; i<player.location.inspectables.size(); i++) {
@@ -481,11 +491,12 @@ public class TextAdventure{
                     }
                 }
                 for(int i=0; i<player.inventory.size(); i++){
-                    if(useAttempt.contains(player.inventory.get(i).name.toLowerCase())){
-                        useItem(player.inventory.get(i).name);
-                       // player.inventory.get(i).use();
-                        used = true;
-                        break;
+                    for(int j=0; j<player.inventory.get(i).name.length; j++){
+                        if(useAttempt.contains(player.inventory.get(i).name[j].toLowerCase())) {
+                            useItem(player.inventory.get(i).name[j]);
+                            used = true;
+                            break;
+                        }
                     }
                 }
                 if(used == false) {
