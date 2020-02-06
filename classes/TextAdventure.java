@@ -342,7 +342,7 @@ public class TextAdventure{
                 else {
                     System.out.println("You are carrying: ");
                     for (int i = 0; i < player.inventory.size(); i++) {
-                        System.out.println(player.inventory.get(i).name);
+                        System.out.println(player.inventory.get(i).name[0]);
                     }
                 }
                 break;
