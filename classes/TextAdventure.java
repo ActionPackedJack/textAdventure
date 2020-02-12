@@ -640,9 +640,15 @@ public class TextAdventure{
     public static void useItem(String name){
         switch(name){
             case "remote":
-                System.out.println("Which function will you operate?");
+                if(refrigerator.active == true) {
+                    System.out.println("There are buttons labeled 'cubed,' 'crushed,' and 'door,' and a dial labelled 'temperature' which is turned all the way down. Which function will you operate?");
+                }
+                else{
+                    System.out.println("There are buttons labeled 'cubed,' 'crushed,' and 'door,' and a dial labelled 'temperature' which is set roughly in the middle. Which function will you operate?");
+                }
                 switch(scanner.nextLine()){
                     case "temperature":
+                    case "dial:":
                         if(refrigerator.active == false){
                             System.out.println("You turn the temperature dial all the way down.");
                             refrigerator.active = true;
@@ -676,6 +682,18 @@ public class TextAdventure{
                                 }
                             }
                             break;
+                        }
+                        if((player.location.name == "dining hall" && player.hiding == true) && monster.location.name == "dining hall"){
+                            if(refrigerator.active == false) {
+                                System.out.println("The door swings open, startling the monster but accomplishing little else.");
+                                timePass();
+                                break;
+                            }
+                            else{
+                                System.out.println("The door swings open, releasing a blast of frigid air that freezes the creature solid.");
+                                monster.alive = false;
+                                break;
+                            }
                         }
                     case "cubed":
                     case "crushed":
