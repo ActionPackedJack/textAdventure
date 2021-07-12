@@ -4,7 +4,6 @@
     <list default="true" id="360120eb-41b0-42d5-b93e-3595c4643fa1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/TextAdventure.java" beforeDir="false" afterPath="$PROJECT_DIR$/classes/TextAdventure.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TextAdventure/classes/TextAdventure.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TextAdventure/classes/TextAdventure.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,10 +15,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="1680" />
-    <option name="height" value="1050" />
   </component>
   <component name="ProjectId" id="1UrN6ZqwSNobgavFgGpP7Z9POAX" />
   <component name="ProjectViewState">
@@ -85,25 +80,25 @@
     </todo-panel>
   </component>
   <component name="WindowStateProjectService">
-    <state width="1034" height="266" key="GridCell.Tab.0.bottom" timestamp="1581541994499">
-      <screen x="4" y="23" width="1676" height="1027" />
+    <state width="1246" height="293" key="GridCell.Tab.0.bottom" timestamp="1626053276412">
+      <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state width="1034" height="266" key="GridCell.Tab.0.bottom/4.23.1676.1027@4.23.1676.1027" timestamp="1581541994499" />
-    <state width="1034" height="266" key="GridCell.Tab.0.center" timestamp="1581541994499">
-      <screen x="4" y="23" width="1676" height="1027" />
+    <state width="1246" height="293" key="GridCell.Tab.0.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1626053276412" />
+    <state width="1246" height="293" key="GridCell.Tab.0.center" timestamp="1626053276410">
+      <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state width="1034" height="266" key="GridCell.Tab.0.center/4.23.1676.1027@4.23.1676.1027" timestamp="1581541994499" />
-    <state width="1034" height="266" key="GridCell.Tab.0.left" timestamp="1581541994498">
-      <screen x="4" y="23" width="1676" height="1027" />
+    <state width="1246" height="293" key="GridCell.Tab.0.center/0.0.1680.1050@0.0.1680.1050" timestamp="1626053276410" />
+    <state width="1246" height="293" key="GridCell.Tab.0.left" timestamp="1626053276410">
+      <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state width="1034" height="266" key="GridCell.Tab.0.left/4.23.1676.1027@4.23.1676.1027" timestamp="1581541994498" />
-    <state width="1034" height="266" key="GridCell.Tab.0.right" timestamp="1581541994499">
-      <screen x="4" y="23" width="1676" height="1027" />
+    <state width="1246" height="293" key="GridCell.Tab.0.left/0.0.1680.1050@0.0.1680.1050" timestamp="1626053276410" />
+    <state width="1246" height="293" key="GridCell.Tab.0.right" timestamp="1626053276411">
+      <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state width="1034" height="266" key="GridCell.Tab.0.right/4.23.1676.1027@4.23.1676.1027" timestamp="1581541994499" />
-    <state x="521" y="369" key="com.intellij.ide.util.TipDialog" timestamp="1580860048691">
-      <screen x="4" y="23" width="1676" height="1027" />
+    <state width="1246" height="293" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1626053276411" />
+    <state x="517" y="369" key="com.intellij.ide.util.TipDialog" timestamp="1626052242852">
+      <screen x="0" y="23" width="1680" height="1027" />
     </state>
-    <state x="521" y="369" key="com.intellij.ide.util.TipDialog/4.23.1676.1027@4.23.1676.1027" timestamp="1580860048691" />
+    <state x="517" y="369" key="com.intellij.ide.util.TipDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1626052242852" />
   </component>
 </project>

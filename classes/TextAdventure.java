@@ -15,6 +15,7 @@ public class TextAdventure{
     static Prop dial;
     static Prop beds;
     static Item remote;
+    static Item glass;
     public static void main(String[] args) {
         scanner = new Scanner(System.in);
         //We begin by creating all the room objects and filling in their descriptions.
@@ -365,10 +366,7 @@ public class TextAdventure{
                     timePass();
                     break;
                 }
-                else{
-                    System.out.println("You cannot hide there.");
-                    break;
-                }
+                System.out.println("You cannot hide there.");
                 break;
             case "emerge":
             case "unhide":
