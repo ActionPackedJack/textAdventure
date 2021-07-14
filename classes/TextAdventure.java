@@ -22,7 +22,7 @@ public class TextAdventure{
         Room hypersleepChamber = new Room(
             "hypersleep chamber",
             "You are standing in the ship's hypersleep chamber, lined with pods in which organic lifeforms can enter suspended animation for an extended period of time. One such pod sits open, as though its activity has just ended.",
-            new Hide(
+            new Hide (
                     new String[]{"pod", "hypersleep"},
                 "You crawl back inside your hypersleep pod and close the lid, but it can only be activated from outside.  You are safe from detection, but not the ravages of time.",
                 "You press the emergency release button from inside the pod.  The door swings open, but not before a loud beep rings out.",
@@ -37,7 +37,7 @@ public class TextAdventure{
                 null);
         Room diningHall = new Room("dining hall",
                 "You are standing in the ship's dining hall.  The floors are riddled with discarded lunch trays and stained with what you hope is ketchup. A large refrigerator hums softly in the corner, and a few cabinets line the wall.",
-                new Hide(
+                new Hide (
                         new String[]{"bench", "table"},
                         "You duck underneath a bench.  You find a few insects, but they are too busy feasting to pay you any mind.",
                         "You crawl out from under the bench and stand up.",
@@ -45,7 +45,15 @@ public class TextAdventure{
                         "You are squatting beneath a bench in the ship's dining hall.",
                         false
                 ));
-        Room crewQuarters = new Room("crew quarters", "You are standing in the crew quarters", null);
+        Room crewQuarters = new Room("crew quarters", "You are standing in the crew quarters", new Hide (
+                new String[]{"beds", "bed"},
+                "You crawl underneath a bed.",
+                "You slide out from under the bed",
+                "Two rows of bunk beds line the room.  Underneath one of them, you see a small black rectangle.",
+                "You are underneath a bed in the crew quarters.",
+                false
+                 )
+        );
         Room captainsQuarters = new Room(
             "captain's quarters",
             "You are in the captain's quarters.  There is a corpse slumped over a desk.",
@@ -110,14 +118,6 @@ public class TextAdventure{
         researchLab.north = medicalBay;
         //We then spawn a monster and place it in the Cargo Bay.
         monster = new Monster();
-        crewQuarters.hidingPlace = new Hide (
-                new String[]{"beds", "bed"},
-                "You crawl underneath a bed.",
-                "You slide out from under the bed",
-                "Two rows of bunk beds line the room.  Underneath one of them, you see a small black rectangle.",
-                "You are underneath a bed in the crew quarters.",
-                false
-        );
         monster.location = cargoBay;
         refrigerator = new Prop (
             new String[]{"refrigerator", "fridge", "cooler", "icebox"},
@@ -143,12 +143,6 @@ public class TextAdventure{
                 true
         );
         surveillance.inspectables.add(dashboard);
-        hypersleepChamber.hidingPlace = new Hide(
-                new String[]{"pod", "hypersleep"},
-                "You crawl back inside your hypersleep pod and close the lid, but it needs to be activated from outside.  You are safe from detection, but not the ravages of time.",
-                "You press the emergency release button from inside the pod.  The door swings open, but not before a loud beep rings out.", null,
-                "You are inside an inactive hypersleep pod.",
-                true);
         //We spawn the player and place them in the Hypersleep Chamber.
         player = new Player();
         player.location = hypersleepChamber;
