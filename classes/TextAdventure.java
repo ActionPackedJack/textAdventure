@@ -14,8 +14,10 @@ public class TextAdventure{
     static Prop refrigerator;
     static Prop dial;
     static Prop beds;
+    static Prop lockers;
     static Item remote;
     static Item glass;
+    static Item keycard;
     public static void main(String[] args) {
         scanner = new Scanner(System.in);
         //We begin by creating all the room objects and filling in their descriptions.
@@ -45,7 +47,7 @@ public class TextAdventure{
                         "You are squatting beneath a bench in the ship's dining hall.",
                         false
                 ));
-        Room crewQuarters = new Room("crew quarters", "You are standing in the crew quarters", new Hide (
+        Room crewQuarters = new Room("crew quarters", "You are standing in the crew quarters.  A row of bunk beds lines one of the walls, and the opposite wall is filled with lockers.", new Hide (
                 new String[]{"beds", "bed"},
                 "You crawl underneath a bed.",
                 "You slide out from under the bed",
@@ -135,8 +137,20 @@ public class TextAdventure{
                 "A remote control emblazoned with the word 'Kensignton.' It has a dial marked 'temperature' and buttons marked 'door,' 'cubed' and 'crushed.'",
                 "You take the remote."
         );
+        keycard = new Item(
+                new String[]{"keycard","key","card"},
+                "A keycard found in a locker in the crew quarters. It is inscribed with the name 'Rigby.'",
+        "You take the keycard."
+        );
         diningHall.inspectables.add(dial);
         crewQuarters.pickups.add(remote);
+        crewQuarters.pickups.add(keycard);
+        Prop lockers = new Prop(
+                new String[]{"locker", "lockers"},
+                "A series of lockers, ostensibly loaded with the crew's personal items. One of them has a keycard sticking out of its lock.",
+                false
+        );
+        crewQuarters.inspectables.add(lockers);
         Prop dashboard = new Prop(
                 new String[]{"screen", "monitor", "console", "dashboard", "television"},
                 "These monitors are displaying video feed from cameras placed in every room of the ship.  You could use them to keep abreast of any unusual activities on the ship.",
