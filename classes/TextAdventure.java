@@ -51,7 +51,7 @@ public class TextAdventure{
                 new String[]{"beds", "bed"},
                 "You crawl underneath a bed.",
                 "You slide out from under the bed",
-                "Two rows of bunk beds line the room.  Underneath one of them, you see a small black rectangle.",
+                "Two rows of bunk beds line the room. Underneath one of them, you see a small black rectangle.",
                 "You are underneath a bed in the crew quarters.",
                 false
                  )
@@ -132,24 +132,28 @@ public class TextAdventure{
             "This dial allows the adjustment of the refrigerator's internal temperature.  It is currently set to a reasonable level.",
             true
         );
-        remote = new Item(
-                new String[]{"remote control", "remote", "rectangle"},
-                "A remote control emblazoned with the word 'Kensignton.' It has a dial marked 'temperature' and buttons marked 'door,' 'cubed' and 'crushed.'",
-                "You take the remote."
-        );
-        keycard = new Item(
-                new String[]{"keycard","key","card"},
-                "A keycard found in a locker in the crew quarters. It is inscribed with the name 'Rigby.'",
-        "You take the keycard."
-        );
-        diningHall.inspectables.add(dial);
-        crewQuarters.pickups.add(remote);
-        crewQuarters.pickups.add(keycard);
         Prop lockers = new Prop(
                 new String[]{"locker", "lockers"},
                 "A series of lockers, ostensibly loaded with the crew's personal items. One of them has a keycard sticking out of its lock.",
                 false
         );
+        remote = new Item(
+                new String[]{"remote control", "remote", "rectangle"},
+                "A remote control emblazoned with the word 'Kensington.' It has a dial marked 'temperature' and buttons marked 'door,' 'cubed' and 'crushed.'",
+                "You take the remote.",
+                "Underneath one of them, you see a small black rectangle.",
+                beds
+        );
+        keycard = new Item(
+                new String[]{"keycard","key","card"},
+                "A keycard found in a locker in the crew quarters. It is inscribed with the name 'Rigby.'",
+                "You take the keycard.",
+                "One of them has a keycard sticking out of its lock.",
+                lockers
+        );
+        diningHall.inspectables.add(dial);
+        crewQuarters.pickups.add(remote);
+        crewQuarters.pickups.add(keycard);
         crewQuarters.inspectables.add(lockers);
         Prop dashboard = new Prop(
                 new String[]{"screen", "monitor", "console", "dashboard", "television"},
@@ -445,11 +449,20 @@ public class TextAdventure{
             case "get":
                 System.out.println("What will you take?");
                 String pickUpAttempt = scanner.nextLine().toLowerCase();
+                System.out.println(player.location.pickups.get(0).name[0]);
                 for(int i=0; i<player.location.pickups.size(); i++){
                     for (int j = 0; j < player.location.pickups.get(i).name.length; j++) {
                         if (pickUpAttempt.contains(player.location.pickups.get(i).name[j])) {
-                            System.out.println(player.location.pickups.get(i).pickUpText);
-                            player.inventory.add(player.location.pickups.get(i));
+                            var item = player.location.pickups.get(i);
+                            System.out.println(item.pickUpText);
+                            player.inventory.add(item);
+                            System.out.println(item.propDescription);
+                            System.out.println(item.location);
+                            System.out.println(item.location.description + "!!!!");
+                            System.out.println(item.location.description.indexOf("One"));
+                            int itemIndex = item.location.description.indexOf(item.propDescription);
+                            System.out.println(itemIndex);
+                            item.location.description = item.location.description.substring(0, itemIndex) + item.location.description.substring(itemIndex + item.propDescription.length());
                             player.location.pickups.remove(i);
                             timePass();
                             break;
