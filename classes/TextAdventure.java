@@ -611,6 +611,7 @@ public class TextAdventure{
                 System.out.println("You think you have some kind of idea, but are too confused to execute it.  The creature leaps forward and catches your face between its talons, then everything goes black.");
                 player.alive = false;
                 break;
+                //
         }
     }
     public static void useProp(String name){
